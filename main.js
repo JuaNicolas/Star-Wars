@@ -11,53 +11,45 @@ console.log
 if
 */
 
-
-
-// if (age >= ageAdult) {
-//     if (gender === 'masculino') {
-//         console.log('Hola Señor, usted es mayor de edad y puede ingresar.')
-//     } else if (gender === 'femenino') {
-//         console.log('Hola Señora, usted es mayor de edad y puede ingresar.')
-//     }
-//     else {
-//         console.log('Hola Sx, usted es mayor de edad y puede ingresar.')
-//     }
-// } else {
-//     if (gender === 'masculino') {
-//         console.log('Hola Señor, usted es menor de edad y no puede ingresar.')
-//     } else if (gender === 'femenino') {
-//         console.log('Hola Señora, usted es menor de edad y no puede ingresar.')
-//     }
-//     else {
-//         console.log('Hola Sx, usted es menor de edad y no puede ingresar.')
-//     }
-// }
-
 var gender = prompt('Ingrese su genero [masculino, femenino u otros]')
 var age = prompt('Por favor, ingrese su edad.')
-var ageAdult = 18
-var male = 'masculino'
-var female = 'femenino'
-var others = 'otros'
-var isAdult = age >= ageAdult
-var notAdult = age < ageAdult
-if (isAdult && male || female || others)) {
-    if (male) {
-        console.log('Hola Señor, usted es mayor de edad y puede ingresar.')
-    } else if (female) {
-        console.log('Hola Señora, usted es mayor de edad y puede ingresar.')
-    } else {
-        console.log('Hola, usted es mayor de edad.')
+var ageInt = parseInt(age)
+const ageAdult = 18
+var isMale = gender === 'masculino'
+var isFemale = gender === 'femenino'
+var isOthers = gender === 'otros'
+var isAdult = ageInt >= ageAdult
+var notAdult = ageInt < ageAdult
+var msgWelcome = 'Hola '
+var msgSir = 'Señor,'
+var msgMadam = 'Señora'
+var msgOthers = ','
+var msgAdult = ' usted es mayor de edad y puede ingresar.'
+var msgNotAdult = ' usted no es mayor de edad y no puede ingresar.'
+
+if (isAdult) {
+    if (isMale) {
+        console.log(msgWelcome + msgSir + msgAdult)
+        // console.log('1')
+    } else if (isFemale) {
+        console.log(msgWelcome + msgMadam + msgAdult)
+        // console.log('2')
+    } else if (isOthers) {
+        console.log(msgWelcome + msgOthers + msgAdult)
+        // console.log('3')
     }
-} else if (notAdult && male || female || others) {
-    if (gender === 'masculino') {
-        console.log('Hola Señor, usted no es mayor de edad y puede ingresar.')
-    } else if (gender === 'femenino') {
-        console.log('Hola Señora, usted no es mayor de edad y puede ingresar.')
+} else if (notAdult) {
+    if (isMale) {
+        console.log(msgWelcome + msgSir + msgNotAdult)
+        // console.log('4')
+    } else if (isFemale) {
+        console.log(msgWelcome + msgMadam + msgNotAdult)
+        // console.log('5')
     }
-    else {
-        console.log('Hola, usted no es mayor de edad.')
+    else if (isOthers) {
+        console.log(msgWelcome + msgOthers + msgNotAdult)
+        // console.log('6')
     }
 } else {
-    console.log('Datos no validos.')
+    console.log('Datos no validos. Ingrese nuevamente')
 }
