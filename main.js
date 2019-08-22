@@ -1,32 +1,47 @@
 /*
-De un arreglo dado, recorrer numero por numero y decir si es numero primo o no.
+Debe recibir como parámetro un texto y un Array de alumnos y buscar dentro del Array por nombre o apellido,
+si lo encuentra deberá devolver la posición en el Array del alumno, en caso contrario -1.
+La función solo encuentra coincidencias exactas, por ejemplo encuentra Fernandez, pero no Fer o fernandez.
+Probar que funcione correctamente.
 */
 
-var listOfNumbers = [163, 181, 721, 7, 123, 45, 65, 77, 72, 456, 893];
-var isPrime = "Numero primo: ";
-var isWhole = "Numero entero: ";
+var studentsList = [
+    {
+        firstName: 'Juan',
+        lastName: 'Pérez',
+        dni: 45678987
+    },
+    {
+        firstName: 'Ana',
+        lastName: 'Fernandez',
+        dni: 45678989
+    },
+    {
+        firstName: 'Pedro',
+        lastName: 'Mármol',
+        dni: 45678956
+    },
+    {
+        firstName: 'Pablo',
+        lastName: 'Picapiedras',
+        dni: 45678983
+    }
+]
 
-for (let index = 0; index < listOfNumbers.length; index++) {
-  const element = listOfNumbers[index];
-  var divBy2 = listOfNumbers[index] % 2;
-  var divBy3 = listOfNumbers[index] % 3;
-  var divBy5 = listOfNumbers[index] % 5;
-  var divBy7 = listOfNumbers[index] % 7;
-  var divBy11 = listOfNumbers[index] % 11;
-  var divBy13 = listOfNumbers[index] % 13;
-  if (divBy2 === 0 && element != 2) {
-    console.log(isWhole + element);
-  } else if (divBy3 === 0 && element != 3) {
-    console.log(isWhole + element);
-  } else if (divBy5 === 0 && element != 5) {
-    console.log(isWhole + element);
-  } else if (divBy7 === 0 && element != 7) {
-    console.log(isWhole + element);
-  } else if (divBy11 === 0 && element != 11) {
-    console.log(isWhole + element);
-  } else if (divBy13 === 0 && element != 13) {
-    console.log(isWhole + element);
-  } else {
-    console.log(isPrime + element);
-  }
+var student = prompt('Ingrese un nombre o apellido de un estudiante para buscar: ')
+const MSG_1 = 'Se encontro al alumno en la posicion: '
+const MSG_ERROR = 'El alumno no se encontro.'
+var sentinel = 0
+
+for (var index = 0; index < studentsList.length; index++) {
+    var studentName = studentsList[index].firstName
+    var studentLastName = studentsList[index].lastName
+    sentinel++
+    if (student == studentName || student == studentLastName) {
+        console.log(MSG_1 + index)
+        break
+    } else if (sentinel == studentsList.length) {
+        console.log(MSG_ERROR)
+        break
+    }
 }
