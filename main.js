@@ -71,25 +71,41 @@ average(examResults)
 
 var examResults = [7, 5, 6, 4, 3, 2, 8]
 
-// i+1
-
 function average2(array) {
-    let examResults2 = []
-    let count = 0
-    let sentinel = 1
-    do {
-        for (let index = 0; index < array.length; index++) {
+    let count = 0 //Un contador anonimo
+    let sentinel = 0 //Para cortar el ciclo antes de que entre a un elemento que no existe.
+    for (let index = 0; index < array.length - 1; index++) {
+        let corte = index - 2 //Para cortar el ciclo antes de entrar al ultimo elemento.
+        do {
+            sentinel++
             var element = array[index]
             count += element * array[sentinel]
-            console.log(sentinel)
-            console.log(count + 'x')
-            sentinel++
-        }
-    } while (sentinel > array.length);
-
-    let total = count / array.length
-    console.log(total)
+            // console.log(sentinel)
+            // console.log(count + 'x')
+        } while (sentinel <= corte);
+    }
+    let total = count / (array.length - 1)
+    // console.log(total)
     return console.log('El promedio es: ' + total)
 }
 
 average2(examResults)
+
+/*
+var examResults = [7, 3, 6, 4, 3, 2, 8]
+console.log(examResults)
+function average(miArr) {
+    console.log('Hola')
+    var contador = 0
+    for (let i = 0; i < miArr.length; i++) {
+        console.log('Hola2')
+        var element = miArr[i]
+        console.log(i)
+        contador += element
+    }
+    console.log('Hola3')
+    var promedio = contador / miArr.lenght
+    console.log('El promedio es: ' + promedio)
+}
+average(examResults)
+*/
