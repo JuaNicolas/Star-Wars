@@ -49,19 +49,24 @@ Math random
 new
 */
 
+// Creo el objeto Student
 function Student(_firstName, _lastName, _dni, _email) {
-    var id = Math.random() * 100     
 
+    // Propiedad privada
+    var id = Math.random() * 100
+
+    // Propiedades publicas
     this.firstName = _firstName
     this.lastName = _lastName
     this.dni = _dni
     this.email = _email
 
+    // Metodos publicos
     this.getId = function () {
         return console.log(id)
     }
 
-    this.getFullName = function (firstName, lastName) {
+    this.getFullName = function () {
         if (this.firstName === undefined || this.lastName === undefined) {
             return
         }
@@ -69,6 +74,7 @@ function Student(_firstName, _lastName, _dni, _email) {
     }
 }
 
+// Ejemplos
 var students = [
     {
         firstName: 'Juan',
@@ -90,7 +96,20 @@ var students = [
     }
 ]
 
-var student1 = new Student('Juan', 'Perez', '45678987', 'juan@gmail.com')
-var student2 = new Student('Ana', 'Fernandez', '45678987', 'ana@gmail.com')
-var student3 = new Student('Pedro', 'Marmol', '45678987', 'pedro@gmail.com')
-var student4 = new Student('Pedro')
+// Nuevo array de estudiantes
+var estudiantes = []
+
+
+// Creacion de un estudiante nuevo y agregado a estudiantes
+for (let index = 0; index < students.length; index++) {
+    const element = students[index];
+    // console.log(element.firstName)
+    estudiantes.push(new Student(element.firstName, element.lastName, element.dni, element.email))
+
+}
+
+// Debbuger
+// var student1 = new Student('Juan', 'Perez', '45678987', 'juan@gmail.com')
+// var student2 = new Student('Ana', 'Fernandez', '45678987', 'ana@gmail.com')
+// var student3 = new Student('Pedro', 'Marmol', '45678987', 'pedro@gmail.com')
+// var student4 = new Student('Pedro')
