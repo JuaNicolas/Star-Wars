@@ -2,19 +2,17 @@
 Crear una función que permita crear un objeto Student mediante el constructor new, 
 el objeto deberá tener las siguientes propiedades:
 Publicas:
-    firstName
-    lastName
-    dni
-    email
+    firstName   lastName    dni email
 Privadas:
-    id generada automáticamente al crear el objeto.
+    id (generada automáticamente al crear el objeto)
 
 El objeto deberá tener las siguientes métodos:
-Públicos:
-getId deberá devolver el id del objeto
-getFullName deberá devolver un String con el nombre completo del objeto, salvando los casos donde el firstName o lastName sea undefined.
 
-Crear tres alumnos usando los datos de prueba y probar sus métodos.
+Públicos:
+getId (deberá devolver el id del objeto)
+getFullName (deberá devolver un String con el nombre completo del objeto, salvando los casos donde el firstName o lastName sea undefined)
+
+Crear una Funcion que crea tres alumnos usando los datos de prueba y probar sus métodos.
 
 Datos de prueba:
 
@@ -99,13 +97,12 @@ var students = [
 // Nuevo array de estudiantes
 var estudiantes = []
 
-
 // Creacion de un estudiante nuevo y agregado a estudiantes
 for (let index = 0; index < students.length; index++) {
     const element = students[index];
     // console.log(element.firstName)
-    estudiantes.push(new Student(element.firstName, element.lastName, element.dni, element.email))
-
+    var estudiante = new Student(element.firstName, element.lastName, element.dni, element.email)
+    estudiantes.push(estudiante)
 }
 
 // Debbuger
