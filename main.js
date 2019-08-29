@@ -1,112 +1,80 @@
-/*
-Crear una función que permita crear un objeto Student mediante el constructor new, 
-el objeto deberá tener las siguientes propiedades:
-Publicas:
-    firstName   lastName    dni email
-Privadas:
-    id (generada automáticamente al crear el objeto)
+/* 
+La función deberá recibir como parámetro un indice y como segundo parámetro un Array 
+y devolver una copia del mismo pero con el elemento que esta en el indice eliminado.
 
-El objeto deberá tener las siguientes métodos:
+var numbers = [1,2,3,4,5,6,7,8,9,10]
 
-Públicos:
-getId (deberá devolver el id del objeto)
-getFullName (deberá devolver un String con el nombre completo del objeto, salvando los casos donde el firstName o lastName sea undefined)
-
-Crear una Funcion que crea tres alumnos usando los datos de prueba y probar sus métodos.
-
-Datos de prueba:
-
-var students = [
-  {
-    firstName: 'Juan',
-    lastName: 'Pérez',
-    dni: 45678987,
-    email: 'juan@gmail.com'
-  },
-  {
-    firstName: 'Ana',
-    lastName: 'Fernandez',
-    dni: 45678989,
-    email: 'ana@gmail.com'
-  },
-  {
-    firstName: 'Pedro',
-    lastName: 'Mármol',
-    dni: 45678956,
-    email: 'pedro@gmail.com'
-  }
-]
-
-Existe una función que devuelve un número random que nos puede servir para hacer un id único.
-
-var randomNumber = Math.random() // Esto devuelve un número del estilo 0.11296860298890499
+deleteElement(2, numbers) 
 
 Documentación:
 
-Math random
-new
+Array.isArray
+splice
+slice
+*/
+/*
+// Funcion para sacar un elemento, mostrar el elemento sacado e insertarlo nuevamente.
+function deleteElement(i, array) {
+    // Saca el elemento.
+    let newArray = array.splice(i, 1)
+    // Muestra el elemento sacado.
+    console.log(newArray)
+    // Inserta nuevamente el elemento al array.
+    array.splice(i++, 0, i)
+    // Muestra el array completo.
+    console.log(array)
+
+}
+
+// Elemento a sacar/agregar.
+var i = parseInt(prompt('Ingrese un indice: '))
+// Array a modificar.
+var numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+// Llamada a la funcion.
+deleteElement(i, numbers)
+
+*/
+/*
+Crear una función que reciba como parámetros dos string y devuelva 
+true en caso de encontrar una coincidencia parcial y 
+false en caso contrario, 
+la función no tiene que distinguir mayúsculas de minúsculas. 
+El primer parámetro pasado a la función es el que se va a tratar de encontrarse dentro del segundo, 
+si alguno de los parámetros no es un string también deberá devolver false.
+
+includesText('Pa', 'Patricia') // Deberá devolver true
+includesText('Patricia', 'Pa') // Deberá devolver false
+includesText(2, 'Pa') // Deberá devolver false
+
+Hint: Se deberán pasar los parámetros recibidos a mayúsculas y luego hacer la comparación mediante indexOf para poder encontrar
+coincidencias parciales sin importar mayúsculas y minúsculas.
 */
 
-// Creo el objeto Student
-function Student(_firstName, _lastName, _dni, _email) {
+// Pido primero el parametro y luego la palabra donde evaluare el primero.
+var msg1 = prompt('Ingrese un parametro a encontrar: ')
+var msg2 = prompt('Ingrese una palabra: ')
 
-    // Propiedad privada
-    var id = Math.random() * 100
+// Funcion para encontrar en la palabra el parametro
+function includesText(m1, m2) {
 
-    // Propiedades publicas
-    this.firstName = _firstName
-    this.lastName = _lastName
-    this.dni = _dni
-    this.email = _email
+    // Paso a mayusculas el parametro y la palabra ingresada
+    var upper1 = m1.toUpperCase()
+    var upper2 = m2.toUpperCase()
 
-    // Metodos publicos
-    this.getId = function () {
-        return console.log(id)
-    }
+    // Compruebo 
+    var indexOfSecond = upper2.indexOf(upper1)
 
-    this.getFullName = function () {
-        if (this.firstName === undefined || this.lastName === undefined) {
-            return
-        }
-        return console.log(this.firstName, this.lastName)
+    // Debugger
+    // console.log(indexOfSecond)
+
+    // Condiciones de resultado True or False
+    if (indexOfSecond >= 0) {
+        console.log(true)
+    } else {
+        console.log(false)
     }
 }
 
-// Ejemplos
-var students = [
-    {
-        firstName: 'Juan',
-        lastName: 'Pérez',
-        dni: 45678987,
-        email: 'juan@gmail.com'
-    },
-    {
-        firstName: 'Ana',
-        lastName: 'Fernandez',
-        dni: 45678989,
-        email: 'ana@gmail.com'
-    },
-    {
-        firstName: 'Pedro',
-        lastName: 'Mármol',
-        dni: 45678956,
-        email: 'pedro@gmail.com'
-    }
-]
-
-// Nuevo array de estudiantes
-var estudiantes = []
-
-// Creacion de un estudiante nuevo y agregado a estudiantes
-for (let index = 0; index < students.length; index++) {
-    const element = students[index];
-    // console.log(element.firstName)
-    var estudiante = new Student(element.firstName, element.lastName, element.dni, element.email)
-    estudiantes.push(estudiante)
-}
-
-// Debbuger
-// var student1 = new Student('Juan', 'Perez', '45678987', 'juan@gmail.com')
-// var student2 = new Student('Ana', 'Fernandez', '45678987', 'ana@gmail.com')
-// var student3 = new Student('Pedro', 'Marmol', '45678987', 'pedro@gmail.com')
-// var student4 = new Student('Pedro')
+// Inicio la funcion
+includesText(msg1, msg2)
