@@ -58,22 +58,26 @@ var msg2 = prompt('Ingrese una palabra: ')
 // Funcion para encontrar en la palabra el parametro
 function includesText(m1, m2) {
 
-    // Paso a mayusculas el parametro y la palabra ingresada
-    var upper1 = m1.toUpperCase()
-    var upper2 = m2.toUpperCase()
+    if (typeof m1 === 'string' && typeof m2 === 'string') {
 
-    // Compruebo 
-    var indexOfSecond = upper2.indexOf(upper1)
+        // Paso a mayusculas el parametro y la palabra ingresada
+        var upper1 = m1.toUpperCase()
+        var upper2 = m2.toUpperCase()
 
-    // Debugger
-    // console.log(indexOfSecond)
+        // Compruebo 
+        var indexOfSecond = upper2.indexOf(upper1)
 
-    // Condiciones de resultado True or False
-    if (indexOfSecond >= 0) {
-        console.log(true)
-    } else {
-        console.log(false)
+        // Debugger
+        // console.log(indexOfSecond)
+
+        // Condiciones de resultado True or False
+        if (indexOfSecond >= 0) {
+            return console.log(true)
+        } else {
+            return console.log(false)
+        }
     }
+
 }
 
 // Inicio la funcion
