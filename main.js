@@ -103,10 +103,10 @@ function getLocalList(_keyValue) {
     let jsonArray = localStorage.getItem(_keyValue)
 
     // Compruebo si el parametro es un JSON.
-    if (JSON.parse(jsonArray)) {
+    if (jsonArray) {
 
         // Retorno el Array
-        return jsonArray
+        return JSON.parse(jsonArray)
     }
 
     // Retorno un Array vacio si jsonArray no era un JSON valido.
