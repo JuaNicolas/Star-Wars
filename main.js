@@ -158,12 +158,16 @@ let studentListDNI = document.createElement('h3')
 let studentListEmail = document.createElement('p')
 
 // Ingreso los datos correspondientes al object 'student' en los elementos h1, h3 y p.
-studentListName.innerHTML = student.firstName + student.lastName
+studentListName.innerHTML = student.firstName + ' ' + student.lastName
 studentListDNI.innerHTML = student.dni
 studentListEmail.innerHTML = student.email
 
 // Agrego la clase de Bootstrap 4 al li.
-studentListItem.classList.add('list-group-item')
+// *Forma 1
+// studentListItem.classList.add('list-group-item')
+
+// *Forma 2
+studentListItem.className = 'list-group-item'
 
 // Agrego al li cada elemento h1, h3 y p.
 studentList.appendChild(studentListItem)
