@@ -105,7 +105,6 @@ secondList(secondaryCharacters)
 //     listTwo.appendChild(secondaryList)
 // }
 
-
 // !SEGUNDO EJERCICIO
 
 /*
@@ -139,6 +138,7 @@ List group Bootstrap
 CreateElement
 */
 
+// Objeto student
 var student = {
     firstName: 'Juan',
     lastName: 'Perez',
@@ -146,25 +146,75 @@ var student = {
     email: 'juan.perez@gmail.com'
 }
 
-// Recorro el Objeto student
-for (var key in student) {
+// Obtengo el ul con ese ID.
+let studentList = document.getElementById('list-group')
 
-    // Obtengo el elemento con el ID.
-    let studentList = document.getElementById('list-group')
+// Creo el li.
+let studentListItem = document.createElement('li')
 
-    // Creo un li.
-    let studentListItem = document.createElement('li')
+// Creo los elementos h1, h3 y p.
+let studentListName = document.createElement('h1')
+let studentListDNI = document.createElement('h3')
+let studentListEmail = document.createElement('p')
 
-    // Agrego estilos de Bootstrap 4 al ul y al li.
-    studentList.classList.add('list-group')
-    studentListItem.classList.add('list-group-item')
+// Ingreso los datos correspondientes al object 'student' en los elementos h1, h3 y p.
+studentListName.innerHTML = student.firstName + student.lastName
+studentListDNI.innerHTML = student.dni
+studentListEmail.innerHTML = student.email
 
-    // Cada recorrido toma la .value del objeto.
-    var studentValue = student[key]
+// Agrego la clase de Bootstrap 4 al li.
+studentListItem.classList.add('list-group-item')
 
-    // Ingreso en el li el value
-    studentListItem.innerHTML = studentValue
+// Agrego al li cada elemento h1, h3 y p.
+studentList.appendChild(studentListItem)
+studentListItem.appendChild(studentListName)
+studentListItem.appendChild(studentListDNI)
+studentListItem.appendChild(studentListEmail)
 
-    // Adjunto al ul el li
-    studentList.appendChild(studentListItem)
-}
+// !DE MÁS
+// let studentList = document.getElementById('list-group')
+// let studentListItem = document.createElement('li')
+
+// let studentListName = document.createElement('h1')
+// let studentListDNI = document.createElement('h3')
+// let studentListEmail = document.createElement('p')
+
+// studentListName.innerHTML = student.firstName + student.lastName
+// studentListDNI.innerHTML = student.dni
+// studentListEmail.innerHTML = student.email
+
+// studentList.classList.add('list-group')
+// studentListItem.classList.add('list-group-item')
+
+
+// studentList.appendChild(studentListItem)
+// studentListItem.appendChild(studentListName)
+// studentListItem.appendChild(studentListDNI)
+// studentListItem.appendChild(studentListEmail)
+
+
+
+
+// // Recorro el Objeto student
+// for (var key in student) {
+
+//     // Obtengo el elemento con el ID.
+//     let studentList = document.getElementById('list-group')
+
+//     // Creo un li.
+//     let studentListItem = document.createElement('li')
+
+//     // Agrego estilos de Bootstrap 4 al ul y al li.
+//     studentList.classList.add('list-group')
+//     studentListItem.classList.add('list-group-item')
+
+//     // Cada recorrido toma la .value del objeto.
+//     var studentValue = student[key]
+
+//     // Ingreso en el li el value
+//     studentListItem.innerHTML = studentValue
+
+//     // Adjunto al ul el li
+//     studentList.appendChild(studentListItem)
+// }
+
