@@ -138,13 +138,16 @@ List group Bootstrap
 CreateElement
 */
 
+
 // Objeto student
-var student = {
-    firstName: 'Juan',
-    lastName: 'Perez',
-    dni: 22456481,
-    email: 'juan.perez@gmail.com'
-}
+// var student = {
+//     firstName: 'Juan',
+//     lastName: 'Perez',
+//     dni: 22456481,
+//     email: 'juan.perez@gmail.com'
+// }
+
+var student = createStudentNode(newStudent)
 
 // Obtengo el ul con ese ID.
 let studentList = document.getElementById('list-group')
