@@ -1,227 +1,89 @@
-// !PRIMER EJERCICIO
-
 /*
-Crear y agregar nodos en una lista
-Usar los métodos y propiedades vistos en clase para crear tres nodos <li> con distintos nombres adentro, 
-agregarles a cada uno la clase list-group-item y agregarlos a la lista provista uno por uno.
+!EJERCICIO 1:
 
-//<ul id="mainList" class="list-group">
-//  <!-- Elementos de la lista -->
-//</ul>
-//
-//Datos de prueba:
-//
-//var texts = ['Ed', 'Edd', 'Eddy' ]
-//Documentación:
-//
-//List group Bootstrap
-//
-//CreateElement
-//
-//AppendChild
-*/
-
-// Creo el array primaryCharacters y secondaryCharacters de la serie infantil 'Ed, Edd y Eddy'
-var primaryCharacters = ['Ed', 'Edd', 'Eddy']
-var secondaryCharacters = ['Rolf', 'Nazz', 'Kevin', 'Jimmy', 'Sarah', 'Johnny', 'Tablon']
-
-// Funcion para crear la primer lista.
-function firstList(array) {
-    for (let index = 0; index < array.length; index++) {
-
-        // Creo el ul
-        let primaryList = document.createElement('ul')
-
-        // Selecciono el ID
-        let listOne = document.getElementById('listOne')
-
-        // Creo el li del ul
-        let listItemNode = document.createElement('li')
-
-        // Ingreso en el li el contenido del array
-        listItemNode.innerHTML = array[index]
-
-        // Agrego al ul el li
-        primaryList.appendChild(listItemNode)
-
-        // Agrego al ID el ul creando con anterioridad
-        listOne.appendChild(primaryList)
-    }
-
-}
-
-// Ejecuta la primer funcion.
-firstList(primaryCharacters)
-
-// Funcion para crear la segunda lista.
-function secondList(array) {
-    for (let index = 0; index < array.length; index++) {
-
-        // Creo el ul
-        let secondaryList = document.createElement('ul')
-
-        // Selecciono el ID
-        let listTwo = document.getElementById('listTwo')
-
-        // Creo el li del ul
-        let listItemNode = document.createElement('li')
-
-        // Ingreso en el li el contenido del array
-        listItemNode.innerHTML = array[index]
-
-        // Agrego al ul el li
-        secondaryList.appendChild(listItemNode)
-
-        // Agrego al ID el ul creando con anterioridad
-        listTwo.appendChild(secondaryList)
-    }
-}
-
-// Ejecuta la segunda funcion.
-secondList(secondaryCharacters)
+Crear una función que valide que el campo nombre no sea vacío cuando el usuario pierde el foco
+La función tiene que validar el campo en el cual se dispara el evento y verificar que el valor del mismo no sea vacío. 
+En caso de que haya un error tiene que agregar una clase para mostrar el input en rojo, 
+en caso contrario una clase para que se muestre en verde.
+Video ejemplo
 
 
-// *PRUEBAS PRIMARIAS
+Si usamos Boostrap podemos mostrar que el campo es valido agregando la clase is-valid y mostrar que es invalido agregando la clase is-invalid.
 
-// for (let index = 0; index < primaryCharacters.length; index++) {
-
-//     let primaryList = document.createElement('ul')
-//     let listOne = document.getElementById('listOne')
-//     let listItemNode = document.createElement('li')
-
-//     listItemNode.innerHTML = primaryCharacters[index]
-//     primaryList.appendChild(listItemNode)
-//     listOne.appendChild(primaryList)
-// }
-
-// for (let index = 0; index < secondaryCharacters.length; index++) {
-
-//     let secondaryList = document.createElement('ul')
-//     let listTwo = document.getElementById('listTwo')
-//     let listItemNode = document.createElement('li')
-
-//     listItemNode.innerHTML = secondaryCharacters[index]
-//     secondaryList.appendChild(listItemNode)
-//     listTwo.appendChild(secondaryList)
-// }
-
-// !SEGUNDO EJERCICIO
-
-/*
-Crear una función que cree un nodo alumno [Pieza del Workshop I]
-Crear una función que reciba como parámetro un objeto alumno y devuelva como resultado un nodo <li> con los datos del alumno.
-var studentNode = createStudentNode(newStudent)
-Resultado ejemplo:
-
-<li class="list-group-item" id="22999333">
-  <h1>
-    Juan Peréz
-  </h1>
-  <h3>
-    DNI: 22999333
-  </h3><p>
-    E-mail: juan@gmail.com
-  </p>
-</li>
-Datos de prueba:
-
-var student = {
-  firstName: 'Juan',
-  lastName: 'Peréz',
-  dni: 22999333,
-  email: 'juan@gmail.com'
-}
 Documentación:
 
-List group Bootstrap
+Evento onblur
 
-CreateElement
+Add class
+
+Remove class
+
+Boostrap forms
 */
 
+// var inputEmail = document.getElementById('myInputEmail')
 
-// Objeto student
-// var student = {
-//     firstName: 'Juan',
-//     lastName: 'Perez',
-//     dni: 22456481,
-//     email: 'juan.perez@gmail.com'
+// inputEmail.onblur = (event) => {
+
+//   let userEvent = event.target
+
+//   if (userEvent.value) {
+//     inputEmail.classList.add('is-valid')
+//     inputEmail.classList.remove('is-invalid')
+//   } else {
+//     inputEmail.classList.add('is-invalid')
+//     inputEmail.classList.remove('is-valid')
+//   }
 // }
 
-var student = createStudentNode(newStudent)
+/*
+!EJERCICIO 2:
 
-// Obtengo el ul con ese ID.
-let studentList = document.getElementById('list-group')
+Crear una función que valide que un campo contenga un email valido cuando el usuario pierde el foco
+La función tiene que validar el campo en el cual se dispara el evento y verificar que el valor del mismo sea un email valido 
+(exista, tenga arroba y punto). En caso de que haya un error tiene que agregar una clase para mostrar el input en rojo, en caso 
+contrario una clase para que se muestre en verde.
+Video ejemplo
 
-// Creo el li.
-let studentListItem = document.createElement('li')
+Si usamos Boostrap podemos mostrar que el campo es valido agregando la clase is-valid y mostrar que es invalido agregando la clase is-invalid.
 
-// Creo los elementos h1, h3 y p.
-let studentListName = document.createElement('h1')
-let studentListDNI = document.createElement('h3')
-let studentListEmail = document.createElement('p')
+Documentación:
 
-// Ingreso los datos correspondientes al object 'student' en los elementos h1, h3 y p.
-studentListName.innerHTML = student.firstName + ' ' + student.lastName
-studentListDNI.innerHTML = student.dni
-studentListEmail.innerHTML = student.email
+Evento onblur
 
-// Agrego la clase de Bootstrap 4 al li.
-// *Forma 1
-// studentListItem.classList.add('list-group-item')
+Add class
 
-// *Forma 2
-studentListItem.className = 'list-group-item'
+Remove class
 
-// Agrego al li cada elemento h1, h3 y p.
-studentList.appendChild(studentListItem)
-studentListItem.appendChild(studentListName)
-studentListItem.appendChild(studentListDNI)
-studentListItem.appendChild(studentListEmail)
+Boostrap forms
+*/
 
-// !DE MÁS
-// let studentList = document.getElementById('list-group')
-// let studentListItem = document.createElement('li')
+var inputEmail = document.getElementById('myInputEmail')
 
-// let studentListName = document.createElement('h1')
-// let studentListDNI = document.createElement('h3')
-// let studentListEmail = document.createElement('p')
+inputEmail.onblur = (e) => {
 
-// studentListName.innerHTML = student.firstName + student.lastName
-// studentListDNI.innerHTML = student.dni
-// studentListEmail.innerHTML = student.email
+  var userEventValue = e.target.value
 
-// studentList.classList.add('list-group')
-// studentListItem.classList.add('list-group-item')
+  let validation = userEventValue.indexOf('@') >= 0 && userEventValue.indexOf('.com') >= 0
+
+  if (validation) {
+    inputEmail.classList.add('is-valid')
+    inputEmail.classList.remove('is-invalid')
+    console.log('si')
+  } else {
+    inputEmail.classList.add('is-invalid')
+    inputEmail.classList.remove('is-valid')
+    console.log('no')
+  }
+
+}
 
 
-// studentList.appendChild(studentListItem)
-// studentListItem.appendChild(studentListName)
-// studentListItem.appendChild(studentListDNI)
-// studentListItem.appendChild(studentListEmail)
-
-
-
-
-// // Recorro el Objeto student
-// for (var key in student) {
-
-//     // Obtengo el elemento con el ID.
-//     let studentList = document.getElementById('list-group')
-
-//     // Creo un li.
-//     let studentListItem = document.createElement('li')
-
-//     // Agrego estilos de Bootstrap 4 al ul y al li.
-//     studentList.classList.add('list-group')
-//     studentListItem.classList.add('list-group-item')
-
-//     // Cada recorrido toma la .value del objeto.
-//     var studentValue = student[key]
-
-//     // Ingreso en el li el value
-//     studentListItem.innerHTML = studentValue
-
-//     // Adjunto al ul el li
-//     studentList.appendChild(studentListItem)
-// }
-
+  // if (userEventValue) {
+  //   inputEmail.classList.add('is-valid')
+  //   inputEmail.classList.remove('is-invalid')
+  // } else {
+  //   inputEmail.classList.add('is-invalid')
+  //   inputEmail.classList.remove('is-valid')
+  // }
+//}

@@ -1,184 +1,141 @@
 /*
 
-*Acceso a los nodos
+*Eventos como atributos
+Para suscribirnos a un evento podemos usar un atributo en nuestro tag HTML con el nombre del manejador del evento y asignarle una función 
+para ejecutar.
 
-Existen varios métodos para acceder a los nodos que utilizan distintas formas de identificarlos puede ser
-a través del Id, de la clase, del nombre de la etiqueta, etc. 
-Por lo cual con sabiendo alguno de esos datos de nuestro elemento HTML vamos a poder acceder a ese nodo 
-y manipularlo para poder mostrar en pantalla datos dinámicos creados en JavaScript.
+< input type = "button" onclick = "showMessage()" />
+  function showMessage() {
+    console.log('El usuario hizo click')
+  }
+
+  En este código al hacer click en el botón se va a mostrar un mensaje en consola que diga 'El usuario hizo click'.
+
+Si queremos que el mismo elemento se suscriba a más de un evento simplemente agregamos otro atributo para manejar ese nuevo evento 
+en nuestro tag HTML y le asignamos otra función para ejecutar.
+
+< input type = "button" class="btn-primary" onclick = "showMessage()" onblur = "showBlurMessage()" />
+  function showMessage() {
+    console.log('El usuario hizo click')
+  }
+
+function showBlurMessage() {
+  console.log('El usuario perdió el foco')
+}
+En este código al hacer click en el botón se va a mostrar un mensaje en consola que diga 'El usuario hizo click' y al perder el foco 
+un mensaje que diga 'El usuario perdió el foco'.
+
+La desventaja de esta forma es que suele ensuciar nuestro HTML si queremos suscribir nuestro botón a varios eventos porque cada uno es 
+un atributo más, si encima a esto le agregamos que los elementos tienen sus propios atributos como clases o estilos el asunto empeora.
+Por este motivo a lo largo del curso vamos a utilizar la forma semántica.
 
 */
 
 /*
 
-*Acceso a los nodos por Id
+*Eventos semánticos
+Para suscribirse a un evento de forma semántica vamos a buscar nuestro elemento con alguno de los métodos de document y le vamos a 
+asignar al atributo encargado de manejar el evento la función que queremos que ejecute.
 
-El método que vamos a emplear para acceder a un nodo sabiendo su Id es getElementById(), 
-este método recibe como parámetro un Id en formato string y devuelve como resultado un solo nodo, 
-porque el Id debería ser único en toda la página.
-Supongamos nuestra página con el siguiente HTML
+<input type="button" id="button" />
+var button = document.getElementById('button')
 
-<h1 id="main-title"></h1>
-var titleNode = document.getElementById('main-title')
+button.onclick = showMessage
 
-titleNode.innerHTML = 'Al fin voy a ver algo en mi página'
-Este código lo que va a hacer es buscar en la página el elemento HTML con el Id main-title, 
-luego voy a guardarlo en la variable titleNode y le voy a pedir mediante la propiedad innerHTML 
-que el contenido del nodo sea el string 'Al fin voy a ver algo en mi página'. 
-De esta manera el resultado en nuestra pagina es que el elemento de mi página queda así -> <h1 id="main-title">
-Al fin voy a ver algo en mi página</h1> logrando mostrarle al usuario un mensaje en el HTML pero empleando código JavaScript para lograrlo.
-*/
+function showMessage(){
+  console.log('El usuario hizo click')
+}
+En este código al hacer click en el botón se va a mostrar un mensaje en consola que diga 'El usuario hizo click''.
 
-/*
+Si queremos registrar más de un evento simplemente le vamos asignando nuevas funciones a los manejadores de eventos que correspondan.
 
-*Acceso a los nodos por clase
+<input type="button" id="button" />
+var button = document.getElementById('button')
 
-El método que vamos a emplear para acceder a un nodo sabiendo su clase es getElementsByClassName(), 
-este método recibe como parámetro una clase en formato string y devuelve como resultado array de nodos, 
-porque pueden existir varios nodos con la misma clase.
-Supongamos nuestra página con el siguiente HTML
+button.onclick = showMessage
 
-<p class="paragraph"></p>
-<p class="paragraph"></p>
-<p class="paragraph"></p>
-var paragraphsNodes = document.getElementsByClassName('paragraph')
-
-paragraphsNodes[0].innerHTML = 'Soy el párrafo numero uno'
-paragraphsNodes[1].innerHTML = 'Soy el párrafo numero dos'
-paragraphsNodes[2].innerHTML = 'Soy el párrafo numero tres'
-
-Este código lo que va a hacer es buscar en la página todos los elementos HTML con la clase paragraph, luego voy a guardarlos en la variable paragraphsNodes y le voy a pedir mediante la propiedad innerHTML que el contenido del elemento cero del Array sea el string 'Soy el párrafo numero uno', luego voy a hacer lo mismo con el elemento uno del Array pero pasando le el string 'Soy el párrafo numero dos' y por último con el elemento dos del Array y el string 'Soy el párrafo numero tres'. De esta manera los elementos <p> de nuestra página quedan así:
-
-<p class="paragraph">Soy el párrafo numero uno</p>
-<p class="paragraph">Soy el párrafo numero dos</p>
-<p class="paragraph">Soy el párrafo numero tres</p>
-*/
-
-/*
-
-*Crear y eliminar nodos
-
-Para poder agregar o eliminar elementos de nuestro HTML existen distintos métodos o propiedades que podemos utilizar, 
-nosotros vamos a ver algunos a continuación.
-
-Crear un elemento o etiqueta html
-Con el método createElement() vamos a poder crear etiquetas de html, este método recibe como parámetro el nombre de la etiqueta en formato 
-string y devuelve como resultado el nodo.
-
-var paragraphNode = document.createElement('p')
-
-El método recibe como parámetro el nombre de la etiqueta que queremos crear (no se incluyen los menor < y mayor > de apretura de la etiqueta), 
-y nos devuelve el nodo ya creado para que luego lo podamos modificar o agregar directamente al DOM. Un dato importante es que si no lo agregamos 
-al documento nunca lo vamos a ver en pantalla.
-
-Cambiar el contenido de un elemento
-La propiedad innerHTML nos permite cambiar el contenido de un nodo asignandole un string, esto pisa o elimina cualquier otro elemento dentro del nodo.
-var paragraphNode = document.createElement('div')
-
-paragraphNode.innerHTML = '<p>Soy un párrafo</p>'
-
-Primero creamos un nodo de etiqueta <div> con el método createElement y luego cambiamos su contenido al modificar la propiedad innerHTML y 
-asignarle el <p>Soy un párrafo</p>, esto nos va dar como resultado un nodo con una etiqueta div, que adentro va a tener una etiqueta p con 
-el texto 'Soy un párrafo'. Quería algo así:
-
-<div>
-  <p>Soy un párrafo</p>
-</div>
-
-*Agregar un nodo dentro de otro
-
-El método appendChild() nos va a permitir agrega un nodo dentro de otro, recibe como parámetro un nodo y lo agrega dentro del elemento que 
-llamo el método. Este método es muy útil para cuando queremos agregar elementos uno por uno, el caso típico es una lista que proviene de 
-un Array de javaScript.
-
-var list = ['Elemento 1','Elemento 2','Elemento 3']
-
-var listNode = document.createElement('ul')
-
-var listItemNode
-
-for(var i = 0; i < list.length; i++){
-  listItemNode = document.createElement('li')
-
-  listItemNode.innerHTML = list[i]
-
-  listNode.appendChild(listItemNode)
+function showMessage(){
+  console.log('El usuario hizo click')
 }
 
-En este caso creo primero el nodo ul que va a contener a todos los elmentos de la lista y luego itero el Array list 
-para crear un nuevo nodo li y agregarlo al lu en cada pasada del for. Esto daría como resultado lo siguiente:
+button.onmouseover = showMessageOver
 
-<ul>
-  <li>Elemento 1</li>
-  <li>Elemento 2</li>
-  <li>Elemento 3</li>
-</ul>
+function showMessageOver(){
+  console.log('El usuario paso el mouse sobre el botón')
+}
+En este código al hacer click en el botón se va a mostrar un mensaje en consola que diga 'El usuario hizo click' y al pasar el mouse por 
+encima un mensaje que diga 'El usuario paso el mouse sobre el botón'.
 
+En este caso el HTML se mantiene limpio porque solo es necesario el id en el HTML no importa cuantos manejadores de eventos le agreguemos al 
+mismo elemento. Esto mantiene nuestro código más limpio y ordenado
 
-*Acceder al nodo padre
-
-Con la propiedad parentNode vamos a poder acceder al nodo padre de un nodo.
-<div>
-  <p id="paragraph">Soy un párrafo</p>
-</div>
-
-var paragraph = document.getElementById('paragraph')
-
-paragraph.parentNode.innerHTML = '<h1>Soy un título</h1>'
-
-Al usar la propiedad parentNode accedo al nodo div pudiendo cambiar el contenido del mismo y reemplazarlo por el string <h1>Soy un título</h1>. 
-
-*Esto genera como resultado que el HTML quede:
-
-<div>
-  <h1>Soy un título</h1>
-</div>
-
-*Remover un elemento hijo
-
-El método removeChild() nos permite eliminar un nodo que sea hijo de otro, el método recibe como parámetro el nodo que queremos eliminar. 
-En combinación con el parentNode nos permite eliminar el mismo elemento que seleccionamos previamente.
-
-<div>
-  <p id="paragraph">Soy un párrafo</p>
-</div>
-var paragraph = document.getElementById('paragraph')
-
-paragraph.parentNode.removeChild(paragraph)
-
-Al utilizar este método en combinación con la propiedad parentNode podemos eliminar el elemento en cuestión dejando como resultado el <div></div> vacío.
 */
 
 /*
-*Propiedades de los nodos
 
-Los nodos tiene propiedades o atributos (los mismo atributos de HTML) que pueden tanto devolver un valor como modificarse. 
-Esto se puede hacer accediendo a la propiedad correspondiente de los nodos así como modificando esa propiedad. 
-Los atributos o propiedades disponibles van a depender del tipo de elemento HTML que estemos manipulando.
+*Evento click
+El evento click puede ser escuchado usando el manejador (on-event handler), asignando le una función a la propiedad onclick del nodo del DOM. 
+Esta función se va a ejecutar cuando el usuario haga click sobre ese elemento. Este evento suele ser muy usado sobre botones para permitirle 
+al usuario tomar acciones.
 
-<h1 id="title"></h1>
-var id = document.getElementById('title').id
+<input type="button" id="button" />
+var button = document.getElementById('button')
 
-console.log(id) // Muestra en consola el string title
+button.onclick = showMessage
 
-document.getElementById('title').id = 'pato'
+function showMessage(){
+  console.log('El usuario hizo click')
+}
+En este código al hacer click en el botón se va a mostrar un mensaje en consola que diga 'El usuario hizo click'.
 
-En el código vemos tanto como acceder al valor de la propiedad Id, así como modificarlo. El resultado final es que el HTML queda asi -> 
-<h1 id="pato"></h1>
+En todos los eventos se recibe un objeto event como primer parámetro que contiene propiedades que identifican que elemento fue el que recibió 
+el click del usuario.
 
-<li id="list-item"></li>
-document.getElementById('text-input').className = 'list-group-item'
+<input type="button" id="button" />
+var button = document.getElementById('button')
 
-En el código vemos como asigna la clase list-group-item el nodo <li>, esta clase se va agregar a otras que se encuentren en el nodo. 
-El elemento quedaría así -> <li id="list-item" class="list-group-item"></li>
+button.onclick = showMessage
 
-<input type="text" id="text-input">
-var value = document.getElementById('text-input').value
+function showMessage(event){
+  var inputNode =  event.target
 
-console.log(value) // Muestra en consola el valor que haya ingresado el usuario en el  input
+  console.log('El usuario hizo click en el elmento con id ' + inputNode.id)
+}
+En este código al hacer click en el botón se va a mostrar un mensaje en consola que diga 'El usuario hizo click en el elmento con id button'.
 
-document.getElementById('text-input').value = ''
+*/
 
-En el código vemos tanto como acceder al valor de la propiedad value de un input que es el valor que el usuario haya ingresado en el campo. 
-Depsués en la siguiente línea lo que hacemos es asignarle el string vacío para borrar lo que estuviera en el input.
+/*
+
+*Evento blur
+El evento blur puede ser escuchado usando el manejador (on-event handler), asignando le una función a la propiedad onblur del nodo del DOM. 
+Esta función se va a ejecutar cuando el usuario haga pierda el foco sobre ese elemento. Este suele ser un evento muy usado para validar 
+formularios.
+
+<input type="text" id="input-text" />
+var inputText = document.getElementById('input-text')
+
+inputText.onblur = showMessage
+
+function showMessage(){
+  console.log('El usuario perdió foco')
+}
+En este código al perder el foco en el input se va a mostrar un mensaje en consola que diga 'El usuario perdió foco'.
+
+En todos los eventos se recibe un objeto event como primer parámetro que contiene propiedades que identifican que elemento fue disparó el 
+evento de perdida de foco. En este caso nos va a servir para levantar el valor del input en el momento que se perdió el foco.
+
+<input type="text" id="input-text" />
+var inputText = document.getElementById('input-text')
+
+inputText.onblur = showMessage
+
+function showMessage(event){
+  var inputNode =  event.target
+
+  console.log('El usuario perdió foco y el input tiene el valor ' + inputNode.value)
+}
+En este código al hacer click en el botón se va a mostrar un mensaje en consola que diga 'El usuario perdió foco y el input tiene el 
+valor <valor de input en ese momento>'.
+
 */
