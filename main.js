@@ -1,16 +1,40 @@
 /*
-
 !Primera parte
-
-Deberá tener un formulario que incluya los siguientes campos y los valide, en caso de que alguno no cumpla deberá mostrar un error y
-no permitir agregar el alumno hasta que se corrija:
-
-Nombre es un campo obligatorio.
 DNI tiene que ser un número positivo y ser único (Que no coincida con ninguno ya agregado en la lista).
 Deberá poder eliminar un alumno ingresando el número de DNI, en caso de que no exista no borra nada.
 
- */
+*/
 
+// Base de Datos de Alumnos para alojar en el Local Storage
+// var studentDB = [{
+//   name: 'Pedro',
+//   surname: 'Paez',
+//   dni: 38453829,
+//   email: 'PedroPaez@gmail.com'
+// }, {
+//   name: 'Pedro',
+//   surname: 'Paez',
+//   dni: 38453829,
+//   email: 'PedroPaez@gmail.com'
+// }]
+var studentDB = []
+
+function convert2JSON() {
+  // Convierto JS en JSON
+  var stringifiedStudentDB = JSON.stringify(studentDB)
+  // Guardo el JSON en el Local Storage
+  localStorage.setItem('DATA_BASE', stringifiedStudentDB)
+}
+
+function back4JSON() {
+  // Levanto la DB
+  var parsedStudentDB = localStorage.getItem('DATA_BASE')
+  // Convierto el JSON en JS
+  parsedStudentDB = JSON.parse(parsedStudentDB)
+}
+
+
+// Función para agregar CSS
 function updateClass(isValid, element) {
   if (isValid) {
     element.classList.add('is-valid')
@@ -24,6 +48,7 @@ function updateClass(isValid, element) {
   }
 }
 
+// Validación de 'Nombre'
 let inputName = document.getElementById('inputName')
 inputName.onblur = (e) => {
 
@@ -33,21 +58,21 @@ inputName.onblur = (e) => {
     && inputNameValue.length > 1
 
   updateClass(isValid, inputName)
-
-
-  // updateClass(isValid, inputName)
-  // if (isValid) {
-  //   inputName.classList.add('is-valid')
-  //   inputName.classList.remove('is-invalid')
-  //   console.log('si')
-
-  // } else {
-  //   inputName.classList.add('is-invalid')
-  //   inputName.classList.remove('is-valid')
-  //   console.log('no')
-  // }
 }
 
+// Validación de 'Apellido'
+let inputSurname = document.getElementById('inputSurname')
+inputSurname.onblur = (e) => {
+
+  let inputSurname = e.target
+  let inputSurnameValue = e.target.value
+  let isValid = typeof inputSurnameValue === 'string'
+    && inputSurnameValue.length > 1
+
+  updateClass(isValid, inputSurname)
+}
+
+// Validación de 'Email'
 let inputEmail = document.getElementById('inputEmail')
 inputEmail.onblur = (e) => {
 
@@ -59,41 +84,50 @@ inputEmail.onblur = (e) => {
     && inputEmailValue.indexOf('.com') > 8
 
   updateClass(isValid, inputEmail)
-  // if (isValid) {
-  //   inputEmail.classList.add('is-valid')
-  //   inputEmail.classList.remove('is-invalid')
-  //   console.log('si')
-
-  // } else {
-  //   inputEmail.classList.add('is-invalid')
-  //   inputEmail.classList.remove('is-valid')
-  //   console.log('no')
-  // }
 }
 
+// Validación de 'Dni'
 let inputDni = document.getElementById('inputDni')
 inputDni.onblur = (e) => {
 
+  // Condiciones para validar:
   let inputDni = e.target
-  let inputDniValue = e.target.value
-  parseInt(inputDniValue)
+  let inputDniValue = parseInt(e.target.value)
   let isValid = inputDniValue !== NaN
     && inputDniValue !== null
     && inputDniValue > 1000000
     && 100000000 > inputDniValue
 
-  updateClass(isValid, inputDni)
-  //   if (isValid) {
-  //   inputDni.classList.add('is-valid')
-  //   inputDni.classList.remove('is-invalid')
-  //   console.log('si')
+  // Confirmar si un alumno esta en la DB con el DNI no se encuentra en la Base de Datos
+  studentDB.forEach(student => {
+    if (inputDniValue !== student.dni) {
+      updateClass(isValid, inputDni)
+    }
+  })
 
-  // } else {
-  //   inputDni.classList.add('is-invalid')
-  //   inputDni.classList.remove('is-valid')
-  //   console.log('no')
-  // }
 }
+
+// Agregar alumno a la Base de Datos
+let addStudent = document.getElementById('addStudent')
+addStudent.onclick = () => {
+  let name = inputName.value
+  let surname = inputSurname.value
+  let dni = parseInt(inputDni.value)
+  let email = inputEmail.value
+
+  student = {
+    name,
+    surname,
+    dni,
+    email
+  }
+
+  // 
+  back4JSON()
+  studentDB.push(student)
+  convert2JSON()
+}
+
 
 
 
