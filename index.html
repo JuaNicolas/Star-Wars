@@ -2,16 +2,91 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Clase 2</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Workshop</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
 
-    <script src="main.js"></script>
+  <header class="text-center">
+    <h1> Workshop </h1>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h2>Lista de alumnos</h2>
+      </div>
+      <div class="col">
+        <h2>Ingreso de datos</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <ul>
+          
+        </ul>
+      </div>
+      <div class="col">
+
+        <form>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input type="text" id="inputName" class="form-control" placeholder="Nombre">
+            </div>
+            <div class="form-group col-md-6">
+              <input type="text" id="inputSurname" class="form-control" placeholder="Apellido (opcional)">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input type="text" id="inputDni" class="form-control" placeholder="DNI">
+            </div>
+            <div class="form-group col-md-6">
+              <input type="text" id="inputEmail" class="form-control" placeholder="Email">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-12">
+              <button type="button" id="addStudent" class="btn btn-block btn-primary" disabled="true">Agregar alumno</button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input type="text" id="searchDni" class="form-control" placeholder="DNI">
+            </div>
+            <div class="form-group col-md-6">
+              <button type="button" id="deleteStudent" class="btn btn-block btn-danger">Eliminar alumno</button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <input type="text" id="searchName" class="form-control" placeholder="Nombre">
+            </div>
+            <div class="form-group col-md-6">
+              <button type="button" id="searchDni" class="btn btn-block btn-success">Buscar alumno</button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+  ​
+  <script type="text/javascript" src="/main.js"></script>
+
 </body>
 
 </html>
