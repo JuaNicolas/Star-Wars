@@ -1,120 +1,163 @@
-// Base de Datos de Alumnos para alojar en el Local Storage
-var studentDB = [{
-  name: 'Pedro',
-  surname: 'Paez',
-  dni: 38453829,
-  email: 'PedroPaez@gmail.com'
-}, {
-  name: 'Pedro',
-  surname: 'Paez',
-  dni: 38453829,
-  email: 'PedroPaez@gmail.com'
-}]
+/**
+ *
+ * 1° - Que el usuario reciba un feedback cuando sale de foco de un elemento. 
+ * 
+ * El feedback sera positivo si los datos ingresados son correctos y seran negativos si los datos, en cambio, no siguen 
+ * los requerimientos deseados.
+ * 
+ * Requisitos:
+ * 
+ *  1- Nombre: debe ser de formato 'string', de más de 2 caracteres y obligatorio.
+ * 
+ *  2- Apellido: debe ser de formato 'string', de más de 2 caracteres y no obligatorio.
+ * 
+ *  3- DNI: debe ser un 'number' de caracteristicas validas para la Argentina, ser de 7 u 8 caracteres de largo, además de ser único en la base de datos y obligatorio.
+ * 
+ *  4- Email: debe ser de formato 'string', contener el signo '@' y un '.com', ser de un mínimo de 14 caracteres y obligatorio.
+ * 
+*/
+const STUDENT_KEY = 'studentList'
 
+// var studentList = [{
+//   name: 'Pedro',
+//   surname: 'Paez',
+//   dni: 87654321,
+//   email: 'PedroPaez@gmail.com'
+// }, {
+//   name: 'Pedro',
+//   surname: 'Paez',
+//   dni: 12345678,
+//   email: 'PedroPaez@gmail.com'
+// }]
 
-// var student7DB = []
+// var studentList = JSON.stringify(studentList)
+// localStorage.setItem(STUDENT_KEY, studentList)
 
-function convert2JSON() {
-  // Convierto JS en JSON
-  var stringifiedStudentDB = JSON.stringify(studentDB)
-  // Guardo el JSON en el Local Storage
-  localStorage.setItem('DATA_BASE', stringifiedStudentDB)
-}
+const MIN_DNI = 10000000
+const MAX_DNI = 100000000
 
-function back4JSON() {
-  // Levanto la DB
-  var parsedStudentDB = localStorage.getItem('DATA_BASE')
-  // Convierto el JSON en JS
-  parsedStudentDB = JSON.parse(parsedStudentDB)
-}
-
-
-// Función para agregar CSS
-function updateClass(isValid, element) {
-  if (isValid) {
-    element.classList.add('is-valid')
-    element.classList.remove('is-invalid')
-    return element.value
+// Función para dar Feedback positivo o negativo
+function confirmInput(_condition, _element) {
+  if (_condition) {
+    _element.classList.add('is-valid')
+    _element.classList.remove('is-invalid')
   } else {
-    element.classList.add('is-invalid')
-    element.classList.remove('is-valid')
+    _element.classList.add('is-invalid')
+    _element.classList.remove('is-valid')
   }
 }
 
-// Validación de 'Nombre'
-let inputName = document.getElementById('inputName')
-inputName.onblur = (e) => {
 
-  let inputName = e.target
-  let inputNameValue = e.target.value
+// Obtencíon y validación de 'Nombre':
+let inputName = document.querySelector('#inputName')
+inputName.onblur = (_e) => {
+
+  let inputName = _e.target
+  let inputNameValue = _e.target.value
   let isValid = typeof inputNameValue === 'string'
     && inputNameValue.length > 1
+    && isNaN(inputNameValue)
 
-  updateClass(isValid, inputName)
+  // Feedback para el usuario
+  confirmInput(isValid, inputName)
+
+  // Habilitar el botón
+  enableButton()
 }
 
-// Validación de 'Apellido'
+// Obtención y validación de 'Apellido':
 let inputSurname = document.getElementById('inputSurname')
-inputSurname.onblur = (e) => {
+inputSurname.onblur = (_e) => {
 
-  let inputSurname = e.target
-  let inputSurnameValue = e.target.value
+  let inputSurname = _e.target
+  let inputSurnameValue = _e.target.value
+
   let isValid = typeof inputSurnameValue === 'string'
-    && inputSurnameValue.length > 1
+    && isNaN(inputSurnameValue)
+    || inputSurnameValue.length == 0
 
-  updateClass(isValid, inputSurname)
+  // Feedback para el usuario
+  confirmInput(isValid, inputSurname)
+
+  // Habilitar el botón
+  enableButton()
 }
 
-// Validación de 'Email'
+// Obtención y validación de 'Email':
 let inputEmail = document.getElementById('inputEmail')
-inputEmail.onblur = (e) => {
+inputEmail.onblur = (_e) => {
 
-  let inputEmail = e.target
-  let inputEmailValue = e.target.value
+  let inputEmail = _e.target
+  let inputEmailValue = _e.target.value
   let isValid = typeof inputEmailValue === 'string'
-    && inputEmailValue.length > 1
-    && inputEmailValue.indexOf('@') > 4
-    && inputEmailValue.indexOf('.com') > 8
+    && inputEmailValue.indexOf('@') > 1
+    && inputEmailValue.indexOf('.com') > 5
 
-  updateClass(isValid, inputEmail)
+  // Feedback para el usuario
+  confirmInput(isValid, inputEmail)
+
+  // Habilitar el botón
+  enableButton()
 }
 
-// Validación de 'Dni'
+// Obtención y validación de 'Dni':
 let inputDni = document.getElementById('inputDni')
-inputDni.onblur = (e) => {
+inputDni.onblur = (_e) => {
 
   // Condiciones para validar:
-  let inputDni = e.target
-  let inputDniValue = parseInt(e.target.value)
+  let inputDni = _e.target
+  let inputDniValue = parseInt(_e.target.value)
 
 
-  let isValid = inputDniValue !== NaN
-    && inputDniValue !== null
-    && inputDniValue > 1000000
-    && 100000000 > inputDniValue
-  // && isInDB(inputDniValue)
+  let isValid = inputDniValue != NaN
+    && inputDniValue > MIN_DNI
+    && MAX_DNI > inputDniValue
 
-  updateClass(isValid, inputDni)
+  let isUnique = findStudent(inputDniValue)
+
+  let validField = isValid && isUnique
+
+  // Feedback para el usuario
+  confirmInput(validField, inputDni)
+
+  // Habilitar el botón
+  enableButton()
 }
 
-// isInDB = (dni) => {
-//   studentDB.forEach(student => {
-//     if (dni !== student.dni) {
-//       return true
-//     } else {
-//       return false
-//     }
-//   })
-// }
 
-// Agregar alumno a la Base de Datos
-let addStudent = document.getElementById('addStudent')
-addStudent.disabled = false
-addStudent.onclick = () => {
-  let name = inputName.value
-  let surname = inputSurname.value
-  let dni = parseInt(inputDni.value)
-  let email = inputEmail.value
+// Busco en la lista de estudiantes el dni ingresado, si lo encuentro devuelvo el objeto estudiante.
+findStudent = (_dni) => {
+  let studentListString = localStorage.getItem(STUDENT_KEY)
+
+  if (studentListString != null) {
+    let studentList = JSON.parse(studentListString)
+    for (let student of studentList) {
+      if (student.dni == _dni) {
+        return false
+      }
+    }
+    return true
+  }
+  return true
+}
+
+
+/**
+ *
+ * 2° - Que el usuario agregue el nuevo alumno.
+ * 
+ * El nuevo alumno debe tener los valores necesarios y válidos para adjuntarse a la base de alumnos. 
+ *
+ * Requisitos:
+ *
+ *  1- Que el 'nombre', el 'apellido', el 'email' (opcional) y el 'dni' que el usuario ingrese esten validados y confirmados 
+ *
+ *  2- Que el botón para agregar el alumno este deshabilitado hasta que los campos sean validos.
+ *
+*/
+
+
+enableButton = () => {
 
   let validName = inputName.classList.contains('is-valid')
   let validSurname = inputSurname.classList.contains('is-valid')
@@ -124,40 +167,55 @@ addStudent.onclick = () => {
     && validSurname
     && validDni
     && validEmail
-  // && isInDB(name)
 
-  student = {
+  if (isValid) {
+    addStudent.disabled = false
+  }
+}
+
+
+// Agregar alumno a la Base de Datos
+let addStudent = document.getElementById('addStudent')
+addStudent.onclick = () => {
+  var studentListString = localStorage.getItem(STUDENT_KEY)
+
+  let name = inputName.value
+  let surname = inputSurname.value
+  let dni = parseInt(inputDni.value)
+  let email = inputEmail.value
+
+  let student = {
     name,
     surname,
     dni,
     email
   }
 
-  if (isValid) {
-    console.log('es valido')
-    back4JSON()
-    studentDB.push(student)
-    convert2JSON()
+  if (studentListString) {
+    studentList = JSON.parse(studentListString)
+    studentList.push(student)
+
   } else {
-    addStudent.disabled = true
-    console.log('acaaa')
+    studentList = [student]
   }
+
+
+  var stringifiedList = JSON.stringify(studentList)
+  localStorage.setItem(STUDENT_KEY, stringifiedList)
 }
 
-window.onload = () => {
-
-  let studentList = document.querySelector('.col ul')
-  let studentNode = document.createElement('li')
-
-  dataBase = localStorage.getItem('DATA_BASE')
-
-  for (let index = 0; index < dataBase.length; index++) {
-    const element = dataBase[index];
-
-    console.log(element)
-    studentNode.innerHTML = 'hola'
-    studentList.appendChild(studentNode)
-  }
-}
+/**
+ *
+ * 3° - Cada alumno en la base de datos o agregado debe mostrarse en la pantalla.
+ *
+ * El nuevo alumno debe mostrar todos los valores ingresados; nombre, apellido, dni y email.
+ *
+ * Requisitos:
+ *
+ *  1- Que sea mostrado en formado de lista, cada alumno es un elemento de la lista.
+ *
+ *  2- Que mantenga una estética coherente al diseño de la página.
+ *
+*/
 
 
