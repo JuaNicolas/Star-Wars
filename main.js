@@ -18,20 +18,20 @@
 */
 const STUDENT_KEY = 'studentList'
 
-// var studentList = [{
-//   name: 'Pedro',
-//   surname: 'Paez',
-//   dni: 87654321,
-//   email: 'PedroPaez@gmail.com'
-// }, {
-//   name: 'Pedro',
-//   surname: 'Paez',
-//   dni: 12345678,
-//   email: 'PedroPaez@gmail.com'
-// }]
+var studentList = [{
+  name: 'Pedro',
+  surname: 'Paez',
+  dni: 87654321,
+  email: 'PedroPaez@gmail.com'
+}, {
+  name: 'Pedro',
+  surname: 'Paez',
+  dni: 12345678,
+  email: 'PedroPaez@gmail.com'
+}]
 
-// var studentList = JSON.stringify(studentList)
-// localStorage.setItem(STUDENT_KEY, studentList)
+var studentList = JSON.stringify(studentList)
+localStorage.setItem(STUDENT_KEY, studentList)
 
 const MIN_DNI = 10000000
 const MAX_DNI = 100000000
@@ -41,12 +41,13 @@ function confirmInput(_condition, _element) {
   if (_condition) {
     _element.classList.add('is-valid')
     _element.classList.remove('is-invalid')
+    console.log('feedback positivo')
   } else {
     _element.classList.add('is-invalid')
     _element.classList.remove('is-valid')
+    console.log('feedback negativo')
   }
 }
-
 
 // Obtencíon y validación de 'Nombre':
 let inputName = document.querySelector('#inputName')
@@ -61,8 +62,10 @@ inputName.onblur = (_e) => {
   // Feedback para el usuario
   confirmInput(isValid, inputName)
 
+  console.log('nombre')
   // Habilitar el botón
   enableButton()
+  console.log('nombre salio')
 }
 
 // Obtención y validación de 'Apellido':
@@ -79,8 +82,10 @@ inputSurname.onblur = (_e) => {
   // Feedback para el usuario
   confirmInput(isValid, inputSurname)
 
+  console.log('apellido')
   // Habilitar el botón
   enableButton()
+  console.log('apellido salio')
 }
 
 // Obtención y validación de 'Email':
@@ -97,7 +102,9 @@ inputEmail.onblur = (_e) => {
   confirmInput(isValid, inputEmail)
 
   // Habilitar el botón
+  console.log('email')
   enableButton()
+  console.log('email salio')
 }
 
 // Obtención y validación de 'Dni':
@@ -113,33 +120,82 @@ inputDni.onblur = (_e) => {
     && inputDniValue > MIN_DNI
     && MAX_DNI > inputDniValue
 
-  let isUnique = findStudent(inputDniValue)
+  let validField = isValid && isDniUnique(inputDniValue)
 
-  let validField = isValid && isUnique
+  console.log(validField + ' aca falla')
 
   // Feedback para el usuario
   confirmInput(validField, inputDni)
-
+  console.log('dni')
   // Habilitar el botón
   enableButton()
+  console.log('dni salio')
 }
 
 
 // Busco en la lista de estudiantes el dni ingresado, si lo encuentro devuelvo el objeto estudiante.
-findStudent = (_dni) => {
+function findStudent(_dni) {
+
+  console.log('busco dni')
   let studentListString = localStorage.getItem(STUDENT_KEY)
 
   if (studentListString != null) {
     let studentList = JSON.parse(studentListString)
-    for (let student of studentList) {
-      if (student.dni == _dni) {
-        return false
+    console.log('entro a buscar el estudiante')
+    for (let index = 0; index < studentList.length; index++) {
+      let student = studentList[index]
+      console.log(student)
+      if (student.dni === _dni) {
+        console.log('encontro el dni')
+        console.log({ student, index })
+        return {
+          student,
+          index
+        }
       }
     }
-    return true
+    console.log('no encontro la lista')
+    return null
   }
-  return true
 }
+
+function isDniUnique(_dni) {
+
+  var studentExist = findStudent(_dni)
+  console.log(studentExist)
+  if (studentExist) {
+    console.log('existe el estudiante')
+    return false;
+  }
+  console.log('no existe el estudiante')
+  return true;
+}
+
+
+// console.log('no encontro el dni')
+// return true
+// return true
+// studentList.forEach((student, index) => {
+//   if (student.dni == _dni) {
+//     console.log('encontro el dni')
+//     console.log({student, index})
+//     return {
+//       student,
+//       index
+//     }
+//   }
+//   console.log('no encontro dni')
+//  return true
+// })
+// for (let student of studentList) {
+//   if (student.dni == _dni) {
+//     console.log('encontro dni')
+// return false
+//     return {
+//       student
+//     }
+//   }
+// }
 
 
 /**
@@ -159,6 +215,7 @@ findStudent = (_dni) => {
 
 enableButton = () => {
 
+  console.log('entro a habilitar boton')
   let validName = inputName.classList.contains('is-valid')
   let validSurname = inputSurname.classList.contains('is-valid')
   let validDni = inputDni.classList.contains('is-valid')
@@ -169,8 +226,10 @@ enableButton = () => {
     && validEmail
 
   if (isValid) {
-    addStudent.disabled = false
+    console.log('habilito el boton boton')
+    return addStudent.disabled = false
   }
+  console.log('el boton sigue deshabilitado')
 }
 
 
@@ -179,6 +238,7 @@ let addStudent = document.getElementById('addStudent')
 addStudent.onclick = () => {
   var studentListString = localStorage.getItem(STUDENT_KEY)
 
+  console.log(studentListString)
   let name = inputName.value
   let surname = inputSurname.value
   let dni = parseInt(inputDni.value)
@@ -191,12 +251,16 @@ addStudent.onclick = () => {
     email
   }
 
+  console.log(`creo al estudiante ${student}`)
   if (studentListString) {
     studentList = JSON.parse(studentListString)
+    console.log(`es un archivos js ${studentList}`)
     studentList.push(student)
+    console.log('si la lista existe, agrega el estudiante ' + studentList)
 
   } else {
     studentList = [student]
+    console.log('si no esta la lista la crea con el nuevo alumno ' + studentList)
   }
 
 
@@ -217,5 +281,3 @@ addStudent.onclick = () => {
  *  2- Que mantenga una estética coherente al diseño de la página.
  *
 */
-
-
