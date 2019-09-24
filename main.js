@@ -148,7 +148,6 @@ function findStudent(_dni) {
       console.log(student)
       if (student.dni === _dni) {
         console.log('encontro el dni')
-        console.log({ student, index })
         return {
           student,
           index
@@ -320,17 +319,20 @@ searchStudentByName.onclick = () => {
   let nameToSearch = document.querySelector('#searchByName')
   nameToSearch.target
 
+  let isValid = typeof nameToSearch.value === 'string'
+    && nameToSearch.value.length > 1
+    && isNaN(nameToSearch.value)
   //Levanto la base de datos
   let studentListString = localStorage.getItem(STUDENT_KEY)
 
-  if (studentListString != null) {
+  if (studentListString != null && isValid) {
 
     let studentList = JSON.parse(studentListString)
 
-    
+
     for (let index = 0; index < studentList.length; index++) {
       const student = studentList[index]
-      
+
       let lowCaseName = student.name.toLowerCase()
       let lowCaseToFind = nameToSearch.value.toLowerCase()
 
@@ -338,15 +340,51 @@ searchStudentByName.onclick = () => {
         console.log('Encontro una coincidencia')
 
         //Mostrar el alumno si se encuentra
-        let foundedShow = document.querySelector('#foundedShow') 
+        let foundedShow = document.querySelector('#foundedShow')
         foundedShow.removeAttribute('hidden')
-        
-        let studentFoundList = document.querySelector('#studentFound') 
+
+        let studentFoundList = document.querySelector('#studentFound')
         let studentFound = document.createElement('li')
 
         studentFound.innerText = `${student.name} ${student.surname} - ${student.dni}`
 
         studentFoundList.appendChild(studentFound)
+      }
+    }
+  }
+}
+
+/**
+ * 5° - Se debe poder buscar a un alumno por su dni para borrar:
+*/
+
+// Buscar el alumno por dni
+let deleteByDNI = document.querySelector('#delete-by-dni')
+deleteByDNI.onclick = () => {
+
+  let dniToSearch = document.querySelector('#deleteByDni')
+  console.log(dniToSearch)
+  let dniToSearchValue = parseInt(dniToSearch.value)
+  let isValid = dniToSearchValue != NaN
+
+  if (isValid) {
+
+    console.log('busco dni')
+    let studentListString = localStorage.getItem(STUDENT_KEY)
+
+    if (studentListString != null) {
+      let studentList = JSON.parse(studentListString)
+      console.log('entro a buscar el estudiante')
+      for (let index = 0; index < studentList.length; index++) {
+        let student = studentList[index]
+        console.log(student)
+        if (student.dni == dniToSearchValue) {
+          console.log('encontro el dni')
+          console.log('hay que borrar')
+
+          studentList = document.querySelector('#studentList')
+          studentList.removeChild(studentNode)
+        }
       }
     }
   }
