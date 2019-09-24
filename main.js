@@ -1,5 +1,4 @@
 /**
- *
  * 1° - Que el usuario reciba un feedback cuando sale de foco de un elemento. 
  * 
  * El feedback sera positivo si los datos ingresados son correctos y seran negativos si los datos, en cambio, no siguen 
@@ -18,8 +17,10 @@
 */
 const STUDENT_KEY = 'studentList'
 
+/*
+! Base de pruebas
 var studentList = [{
-  name: 'Pedro',
+   name: 'Pedro',
   surname: 'Paez',
   dni: 87654321,
   email: 'PedroPaez@gmail.com'
@@ -32,6 +33,7 @@ var studentList = [{
 
 var studentList = JSON.stringify(studentList)
 localStorage.setItem(STUDENT_KEY, studentList)
+*/
 
 const MIN_DNI = 10000000
 const MAX_DNI = 100000000
@@ -77,6 +79,7 @@ inputSurname.onblur = (_e) => {
 
   let isValid = typeof inputSurnameValue === 'string'
     && isNaN(inputSurnameValue)
+    && inputSurnameValue.length > 1
     || inputSurnameValue.length == 0
 
   // Feedback para el usuario
@@ -121,8 +124,6 @@ inputDni.onblur = (_e) => {
     && MAX_DNI > inputDniValue
 
   let validField = isValid && isDniUnique(inputDniValue)
-
-  console.log(validField + ' aca falla')
 
   // Feedback para el usuario
   confirmInput(validField, inputDni)
@@ -171,35 +172,7 @@ function isDniUnique(_dni) {
   return true;
 }
 
-
-// console.log('no encontro el dni')
-// return true
-// return true
-// studentList.forEach((student, index) => {
-//   if (student.dni == _dni) {
-//     console.log('encontro el dni')
-//     console.log({student, index})
-//     return {
-//       student,
-//       index
-//     }
-//   }
-//   console.log('no encontro dni')
-//  return true
-// })
-// for (let student of studentList) {
-//   if (student.dni == _dni) {
-//     console.log('encontro dni')
-// return false
-//     return {
-//       student
-//     }
-//   }
-// }
-
-
 /**
- *
  * 2° - Que el usuario agregue el nuevo alumno.
  * 
  * El nuevo alumno debe tener los valores necesarios y válidos para adjuntarse a la base de alumnos. 
@@ -269,7 +242,6 @@ addStudent.onclick = () => {
 }
 
 /**
- *
  * 3° - Cada alumno en la base de datos o agregado debe mostrarse en la pantalla.
  *
  * El nuevo alumno debe mostrar todos los valores ingresados; nombre, apellido, dni y email.
@@ -281,3 +253,63 @@ addStudent.onclick = () => {
  *  2- Que mantenga una estética coherente al diseño de la página.
  *
 */
+
+// levantar la base de datos para ingresar los nodos
+
+window.onload = () => {
+
+  // Levantar la base de datos
+  let studentListString = localStorage.getItem(STUDENT_KEY)
+  console.log(studentListString)
+  if (studentListString != null) {
+    let studentList = JSON.parse(studentListString)
+    console.log('Transformo la lista en JS')
+    return studentNodes(studentList)
+  }
+  console.log('No encontro base de datos')
+  studentList = []
+}
+
+studentNodes = (_dataBase) => {
+
+  console.log('Entra a crear los nodos')
+
+  _dataBase.forEach(student => {
+    
+    console.log('Itera en la base de datos alumno por alumno')
+    createStudent(student)
+
+  })
+}
+
+createStudent = (alumni) => {
+
+  console.log('Entra a crear el alumno')
+  studentList = document.querySelector('#studentList')
+
+  studentNode = document.createElement('li')
+
+  studentFullName = document.createElement('p')
+  studentFullName.innerHTML = `${alumni.name} ${alumni.surname}`
+
+  studentDNI = document.createElement('p')
+  studentDNI.innerHTML = `${alumni.dni}`
+
+  studentEmail = document.createElement('p')
+  studentEmail.innerHTML = `${alumni.email}`
+
+  studentList.appendChild(studentNode)
+  studentNode.appendChild(studentFullName)
+  studentNode.appendChild(studentDNI)
+  studentNode.appendChild(studentEmail)
+
+  console.log('Sale de crear el alumno')
+}
+
+/**
+ * 4° - Se debe poder buscar a un alumno por su nombre:
+ * 
+ *  1- debe aceptar valores parciales.
+ *
+*/
+
