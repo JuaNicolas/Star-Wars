@@ -148,9 +148,16 @@ function findStudent(_dni) {
       console.log(student)
       if (student.dni === _dni) {
         console.log('encontro el dni')
+        let name = student.name
+        let surname = student.surname
+        let dni = student.dni
+        let email = student.email
         return {
-          student,
-          index
+          index,
+          name,
+          surname,
+          dni,
+          email
         }
       }
     }
@@ -260,13 +267,12 @@ window.onload = () => {
   // Levantar la base de datos
   let studentListString = localStorage.getItem(STUDENT_KEY)
   console.log(studentListString)
-  if (studentListString != null) {
+  if (studentListString !== null) {
     let studentList = JSON.parse(studentListString)
     console.log('Transformo la lista en JS')
     return studentNodes(studentList)
   }
   console.log('No encontro base de datos')
-  studentList = []
 }
 
 studentNodes = (_dataBase) => {
@@ -375,17 +381,17 @@ deleteByDNI.onclick = () => {
     if (studentListString != null) {
       let studentList = JSON.parse(studentListString)
       console.log('entro a buscar el estudiante')
-      for (let index = 0; index < studentList.length; index++) {
-        let student = studentList[index]
-        console.log(student)
-        if (student.dni == dniToSearchValue) {
-          console.log('encontro el dni')
-          console.log('hay que borrar')
 
-          studentList = document.querySelector('#studentList')
-          studentList.removeChild(studentNode)
-        }
+      if (findStudent(dniToSearchValue)) {
+        console.log('encontro el dni')
+        console.log(`${findStudent(dniToSearchValue).index} lalalala`)
+        studentList.splice(findStudent.index, 1)
+        console.log('hay que borrar')
+
+        JSON.stringify(studentList)
+        localStorage.setItem(STUDENT_KEY, studentList)
       }
     }
   }
 }
+
