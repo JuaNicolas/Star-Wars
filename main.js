@@ -185,7 +185,7 @@ function isDniUnique(_dni) {
  *
 */
 
-
+// Habilitar el botón
 enableButton = () => {
 
   console.log('entro a habilitar boton')
@@ -275,7 +275,7 @@ studentNodes = (_dataBase) => {
   console.log('Entra a crear los nodos')
 
   _dataBase.forEach(student => {
-    
+
     console.log('Itera en la base de datos alumno por alumno')
     createStudent(student)
 
@@ -313,3 +313,27 @@ createStudent = (alumni) => {
  *
 */
 
+// Buscar el alumno por nombre
+let searchStudentByName = document.getElementById('search-by-name')
+searchStudentByName.onclick = () => {
+
+  let nameToSearch = document.querySelector('#searchByName')
+  nameToSearch.target
+
+  //Levanto la base de datos
+  let studentListString = localStorage.getItem(STUDENT_KEY)
+
+  if (studentListString != null) {
+
+    let studentList = JSON.parse(studentListString)
+
+    for (let index = 0; index < studentList.length; index++) {
+      const student = studentList[index]
+
+      if (student.name.indexOf(nameToSearch.value)) {
+        console.log('Encontro una coincidencia')
+        console.log(student.name)
+      }
+    }
+  }
+}
