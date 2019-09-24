@@ -327,12 +327,26 @@ searchStudentByName.onclick = () => {
 
     let studentList = JSON.parse(studentListString)
 
+    
     for (let index = 0; index < studentList.length; index++) {
       const student = studentList[index]
+      
+      let lowCaseName = student.name.toLowerCase()
+      let lowCaseToFind = nameToSearch.value.toLowerCase()
 
-      if (student.name.indexOf(nameToSearch.value)) {
+      if (lowCaseName.indexOf(lowCaseToFind) > -1) {
         console.log('Encontro una coincidencia')
-        console.log(student.name)
+
+        //Mostrar el alumno si se encuentra
+        let foundedShow = document.querySelector('#foundedShow') 
+        foundedShow.removeAttribute('hidden')
+        
+        let studentFoundList = document.querySelector('#studentFound') 
+        let studentFound = document.createElement('li')
+
+        studentFound.innerText = `${student.name} ${student.surname} - ${student.dni}`
+
+        studentFoundList.appendChild(studentFound)
       }
     }
   }
