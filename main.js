@@ -1,61 +1,91 @@
-// !Primer ejercicio
-// let inputEmail = $('#inputEmail')
-// 
-// $(document).ready(function () {
-//     inputEmail.blur(function () {
+let validName = (_e) => {
 
-//         let inputValue = $(this).val()
+    let validation = typeof _e.val() == 'string'
+        && _e.val() != null
+        && _e.val().length > 0
 
-//         let isValid = inputValue.indexOf('@') != -1
-//             && inputValue.indexOf('.com') != -1
+    return validation
+}
 
-//         if (isValid) {
-//             $(this).addClass('is-valid')
-//             $(this).removeClass('is-invalid')
-//         } else {
-//             $(this).addClass('is-invalid')
-//             $(this).removeClass('is-valid')
-//         }
-//     })
-// })
+$(document).ready(function () {
 
-// !Segundo ejercicio
+    $('#inputName').one('blur', function () {
 
-// Empezar en cero.
-// Si el usuario presiona Enter tiene que empezar de nuevo.
-// Sumar uno si el usuario presiona arriba.
-// Restar uno si el usuario presiona abajo.
+        if (validName($(this))) {
+            $(this).addClass('is-valid')
+            $(this).removeClass('is-invalid')
+        } else {
+            $(this).addClass('is-invalid')
+            $(this).removeClass('is-valid')
+        }
+    }).change(function () {
+        if (validName($(this))) {
+            $(this).addClass('is-valid')
+            $(this).removeClass('is-invalid')
+        } else {
+            $(this).addClass('is-invalid')
+            $(this).removeClass('is-valid')
+        }
+    })
+})
 
-// let init = 0
+let validEmail = (_e) => {
 
-// $(document).ready(function () {
+    let validation = validName(_e)
+        && _e.val().length > 8
+        && _e.val().indexOf('@') != 1
+        && _e.val().indexOf('.con') != 1
 
-//     $(document).keydown(function (e) {
+    return validation
+}
 
-//         switch (e.which) {
-//             case 40:
-//                 init--
-//                 $("p").html('Numero: ' + init)
-//                 break
-//             case 38:
-//                 init++
-//                 $("p").html('Numero: ' + init)
-//                 break
-//             case 13:
-//                 init = 0
-//                 $("p").html('Numero: ' + init)
-//                 break
-//         }
-//     })
-// })
+$(document).ready(function () {
 
-// !Tercer ejercicio
+    $('#inputEmail').one('blur', function () {
 
-// El formulario deberá contar con los siguientes campos y validarlo la primera vez cuando el usuario pierda el foco, pero a partir de la siguiente validarlo en cada cambio del input usando jQuery para manipular el DOM.
+        if (validEmail($(this))) {
+            $(this).addClass('is-valid')
+            $(this).removeClass('is-invalid')
+        } else {
+            $(this).addClass('is-invalid')
+            $(this).removeClass('is-valid')
+        }
+    }).change(function () {
+        if (validEmail($(this))) {
+            $(this).addClass('is-valid')
+            $(this).removeClass('is-invalid')
+        } else {
+            $(this).addClass('is-invalid')
+            $(this).removeClass('is-valid')
+        }
+    })
+})
 
-// Nombre: Deberá tener contenido.
-// Email: Deberá contener arroba, punto y contenido.
-// Comentarios: Deberá tener contenido.
-// Si existe algún error deberá mostrar el campo en rojo y un mensaje indicando el tipo de error debajo del input.
+let validComment = (_e) => {
 
-// Deberá tener un botón para enviar la información que deberá habilitarse solo si todos los campos son validos.
+    let validation = validName(_e)
+
+    return validation
+}
+
+$(document).ready(function () {
+
+    $('#inputComment').one('blur', function () {
+
+        if (validComment($(this))) {
+            $(this).addClass('is-valid')
+            $(this).removeClass('is-invalid')
+        } else {
+            $(this).addClass('is-invalid')
+            $(this).removeClass('is-valid')
+        }
+    }).change(function () {
+        if (validComment($(this))) {
+            $(this).addClass('is-valid')
+            $(this).removeClass('is-invalid')
+        } else {
+            $(this).addClass('is-invalid')
+            $(this).removeClass('is-valid')
+        }
+    })
+})
