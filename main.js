@@ -1,93 +1,102 @@
-let validName = (_e) => {
-
-    let validation = typeof _e.val() == 'string'
-        && _e.val() != null
-        && _e.val().length > 0
-
-    return validation
-}
-
+// Inicio
 $(document).ready(function () {
 
+    // Ejecutar Nombre
     $('#inputName').one('blur', function () {
+        validName($(this))
+        validFields()
 
-        if (validName($(this))) {
-            $(this).addClass('is-valid')
-            $(this).removeClass('is-invalid')
-        } else {
-            $(this).addClass('is-invalid')
-            $(this).removeClass('is-valid')
-        }
     }).change(function () {
-        if (validName($(this))) {
-            $(this).addClass('is-valid')
-            $(this).removeClass('is-invalid')
-        } else {
-            $(this).addClass('is-invalid')
-            $(this).removeClass('is-valid')
-        }
+        validName($(this))
+        validFields()
     })
-})
 
-let validEmail = (_e) => {
+    // Validar Nombre
+    let validName = (_e) => {
 
-    let validation = validName(_e)
-        && _e.val().length > 8
-        && _e.val().indexOf('@') != 1
-        && _e.val().indexOf('.con') != 1
+        let validation = typeof _e.val() == 'string'
+            && _e.val() != null
+            && _e.val().length > 0
 
-    return validation
-}
+        if (validation) {
+            _e.addClass('is-valid')
+            _e.removeClass('is-invalid')
+        } else {
+            _e.addClass('is-invalid')
+            _e.removeClass('is-valid')
+        }
+    }
 
-$(document).ready(function () {
-
+    // Ejecutar Email
     $('#inputEmail').one('blur', function () {
+        validEmail($(this))
+        validFields()
 
-        if (validEmail($(this))) {
-            $(this).addClass('is-valid')
-            $(this).removeClass('is-invalid')
-        } else {
-            $(this).addClass('is-invalid')
-            $(this).removeClass('is-valid')
-        }
     }).change(function () {
-        if (validEmail($(this))) {
-            $(this).addClass('is-valid')
-            $(this).removeClass('is-invalid')
-        } else {
-            $(this).addClass('is-invalid')
-            $(this).removeClass('is-valid')
-        }
+        validEmail($(this))
+        validFields()
     })
-})
 
-let validComment = (_e) => {
+    // Validar Email
+    let validEmail = (_e) => {
 
-    let validation = validName(_e)
+        let validation = _e.val().length > 8
+            && _e.val().indexOf('@') != 1
+            && _e.val().indexOf('.con') != 1
 
-    return validation
-}
+        if (validation) {
+            _e.addClass('is-valid')
+            _e.removeClass('is-invalid')
+        } else {
+            _e.addClass('is-invalid')
+            _e.removeClass('is-valid')
+        }
+    }
 
-$(document).ready(function () {
-
+    // Ejecutar Comentario
     $('#inputComment').one('blur', function () {
-
-        if (validComment($(this))) {
-            $(this).addClass('is-valid')
-            $(this).removeClass('is-invalid')
-        } else {
-            $(this).addClass('is-invalid')
-            $(this).removeClass('is-valid')
-        }
+        validComment($(this))
+        validFields()
     }).change(function () {
-        if (validComment($(this))) {
-            $(this).addClass('is-valid')
-            $(this).removeClass('is-invalid')
-        } else {
-            $(this).addClass('is-invalid')
-            $(this).removeClass('is-valid')
-        }
+        validComment($(this))
+        validFields()
     })
 
+    // Validar Comentario
+    let validComment = (_e) => {
+
+        let validation = _e.val() != null
+            && _e.val().length > 0
+
+        if (validation) {
+            _e.addClass('is-valid')
+            _e.removeClass('is-invalid')
+        } else {
+            _e.addClass('is-invalid')
+            _e.removeClass('is-valid')
+        }
+    }
+
+    // Ejecutar Boton
+    // $('button').on('click', function () {
+
+    // })
+    // Validar Boton
+    validFields = () => {
+
+        let name = $('#inputName').hasClass('is-valid')
+        let email = $('#inputEmail').hasClass('is-valid')
+        let comment = $('#inputComment').hasClass('is-valid')
+
+        let isValid = name
+            && email
+            && comment
+
+        console.log(isValid)
+        if (isValid) {
+            console.log('entro')
+            $('#button').removeAttr('disabled')
+        }
+    }
 
 })
