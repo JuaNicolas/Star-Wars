@@ -60,7 +60,7 @@ $(document).ready(function () {
     }
 
     function getNext(data, showChars) {
-        if (data.next) {
+        if (data.results) {
             showChars(data.results)
             getData(data.next, getNext)
         }
