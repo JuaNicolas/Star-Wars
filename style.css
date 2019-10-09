@@ -1,12 +1,7 @@
-
-
-
-#background1 {
-    background-color: rgb(255, 104, 104);
-}
-#background2 {
-    background-color: rgb(140, 140, 255);
-}
-#background3 {
-    background-color: rgb(255, 255, 101);
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
