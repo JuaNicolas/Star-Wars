@@ -30,7 +30,7 @@
  * 
  */
 
-// Funciones v
+// Funciones
 
 // Inicio
 $(document).ready(function () {
