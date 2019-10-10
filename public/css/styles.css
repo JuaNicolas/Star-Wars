@@ -1,3 +1,11 @@
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: Starwars;
   src: local("Starwars"), url(../fonts/Starjedi.ttf);
@@ -5,10 +13,10 @@
 }
 
 #root {
-  margin-top: 50px;
-  font-family: 'Starwars';
+  margin-top: 5rem;
+  font-family: "Starwars";
   color: white;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
 }
 
 body {

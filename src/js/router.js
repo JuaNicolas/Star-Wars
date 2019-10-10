@@ -1,13 +1,26 @@
 import crossroads from 'crossroads'
+import homeController from './controllers/homeController'
 
-function router () {
+
+function router() {
   crossroads.addRoute('', function () {
     console.log('Home page')
-    $('#root').load('./partials/home.html')
+    $('#root').load('./partials/home.html', homeController)
   })
 
   crossroads.addRoute('#/people', function () {
-    console.log('People')
+    console.log('People page')
+    $('#root').load('./partials/people.html')
+  })
+
+  crossroads.addRoute('#/contact', function () {
+    console.log('Contact page')
+    $('#root').load('./partials/contact.html')
+  })
+
+  crossroads.addRoute('#/local-storage', function () {
+    console.log('Local-storage page')
+    $('#root').load('./partials/local-storage.html')
   })
 
   // En cada cambio del # va a verificar las rutas

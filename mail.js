@@ -30,58 +30,6 @@
  * 
  */
 
-//  Modelo, Vista y Controlador
-
-// Vista
-
-$(document).ready(function () {
-
-    let root = $('#app')
-    root.addClass('container')
-
-    let form = $('<form>')
-
-    let name = `
-        <div class="row my-2">
-            <div class= "col-12 col-md-8 offset-md-2" >
-                <input type="text" id="inputName" class="form-control" placeholder="Nombre">
-                <p id="nameFeedback" class="my-1"></p>
-            </div>
-        </div>`
-
-    let email = `
-        <div class="row my-2">
-            <div class="col-12 col-md-8 offset-md-2">
-                <input type="text" id="inputEmail" class="form-control" placeholder="Email">
-                <p id="emailFeedback" class="my-1"></p>
-            </div>
-        </div>`
-
-    let comment = `
-        <div class="row my-2">
-            <div class="col-12 col-md-8 offset-md-2">
-                <textarea class="form-control" name="inputComment" id="inputComment" cols="30" rows="5"
-             placeholder="Por favor, ingrese un comentario"></textarea>
-            </div>
-        </div>`
-
-    let submit = `
-        <div class="row my-2">
-            <div class="col-12 col-md-8 offset-md-2">
-                <button id="button" class="btn btn-block btn-success" disabled>Enviar</button>
-            </div>
-        </div>`
-
-
-    form.append(name, email, comment, submit)
-
-
-    root.append(form)
-
-})
-
-
-
 // Funciones v
 
 // Inicio
