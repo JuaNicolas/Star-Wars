@@ -5,6 +5,7 @@
  * @param { string } key 
  * @returns { array }
  */
+
 function getLocalList(key) {
     if (typeof key === 'string') {
         var localList = localStorage.getItem(key)
@@ -23,6 +24,7 @@ function getLocalList(key) {
  * @param { string } key 
  * @param { array } list 
  */
+
 function setLocalList(key, list) {
     if (typeof key === 'string' && Array.isArray(list)) {
         var strList = JSON.stringify(list)
