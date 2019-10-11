@@ -10,7 +10,7 @@ function showChars(data) {
     for (let index = 0; index < data.length; index++) {
         const element = data[index];
 
-        // Translate gende and color eyes
+        // Translate gender and color eyes
         translater(element)
 
         let char = $('<tr/>').attr('id', `char${contador}`)
@@ -32,10 +32,10 @@ function showChars(data) {
             .append(charEyes)
             .append(charSave)
         tableBody.append(char)
-
     }
-
+    
     saveChar()
+
 }
 
 export default showChars
