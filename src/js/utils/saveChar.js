@@ -32,7 +32,7 @@ function saveChar() {
 
         setLocalList('chars', savedChars)
 
-        charRow.fadeOut(1000, function () {
+        charRow.fadeOut(1250, function () {
             charRow.remove()
         })
     })
