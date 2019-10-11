@@ -1,4 +1,5 @@
 import translater from './translater'
+import saveChar from './saveChar'
 
 let contador = 1
 
@@ -19,7 +20,7 @@ function showChars(data) {
         let charHeight = $('<td>').text(`${element.height} cm`)
         let charMass = $('<td>').text(`${element.mass} kg`)
         let charEyes = $('<td>').text(`${element.eye_color}`)
-        let charSave = $('<td>').append($('<button>').text('Guardar').addClass('btn btn-danger').attr('type', 'button'))
+        let charSave = $('<td>').append($('<button>').text('Guardar').addClass('btn btn-danger saveChar').attr('type', 'button'))
 
         contador++
 
@@ -33,6 +34,8 @@ function showChars(data) {
         tableBody.append(char)
 
     }
+
+    saveChar()
 }
 
 export default showChars
