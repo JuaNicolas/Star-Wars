@@ -3,7 +3,6 @@ import showChars from './showChars'
 function getData(url) {
     $.ajax(url)
         .done(function (data) {
-            console.log(data)
             showChars(data.results)
         })
         .fail(function (error) {
