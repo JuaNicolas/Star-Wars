@@ -26,3 +26,25 @@ body {
   background-position: 50% 25%;
   background-size: cover;
 }
+
+/* Home */
+
+.row .col h1 {
+  font-size: 6rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.row .col h1 span {
+  font-size: 2.5rem;
+}
+
+.row .col a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.row .col a:hover {
+  color: greenyellow;
+}
+
