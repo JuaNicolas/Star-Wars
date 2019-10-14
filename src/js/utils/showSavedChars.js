@@ -17,8 +17,8 @@ export default function showSavedChars() {
         let charId = $('<td>').text(`${solcito.charId}`)
         let charName = $('<td>').text(`${solcito.charName}`)
         let charGender = $('<td>').text(`${solcito.charGender}`)
-        let charHeight = $('<td>').text(`${solcito.charHeight} cm`)
-        let charMass = $('<td>').text(`${solcito.charMass} kg`)
+        let charHeight = $('<td>').text(`${solcito.charHeight}`)
+        let charMass = $('<td>').text(`${solcito.charMass}`)
         let charEyes = $('<td>').text(`${solcito.charColorEyes}`)
         let charDelete = $('<td>').append($('<button>').text('Eliminar').addClass('btn btn-danger deleteChar').attr('type', 'button'))
 

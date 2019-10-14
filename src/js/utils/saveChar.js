@@ -2,7 +2,7 @@ import { setLocalList } from './localStorage'
 
 let savedChars = []
 
-function saveChar() {
+export default function saveChar() {
 
     let btn = $('.saveChar')
 
@@ -38,5 +38,3 @@ function saveChar() {
     })
 
 }
-
-export default saveChar

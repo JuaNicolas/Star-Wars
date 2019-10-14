@@ -1,4 +1,6 @@
-function translater(char) {
+export default function translater(char) {
+
+    // Translate gender  - height - mass - color eyes
 
     switch (char.gender) {
         case 'male':
@@ -11,6 +13,26 @@ function translater(char) {
             char.gender = 'Sin género'
             break;
         default:
+            break;
+    }
+
+    switch (char.height) {
+        case 'unknown':
+            char.height = 'Desconocido'
+            break;
+
+        default:
+            char.height = `${char.height} cm`
+            break;
+    }
+
+    switch (char.mass) {
+        case 'unknown':
+            char.mass = 'Desconocido'
+            break;
+
+        default:
+            char.mass = `${char.mass} Kg.`
             break;
     }
 
@@ -64,5 +86,3 @@ function translater(char) {
             break;
     }
 }
-
-export default translater

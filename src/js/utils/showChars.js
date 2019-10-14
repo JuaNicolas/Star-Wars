@@ -1,28 +1,29 @@
 import translater from './translater'
 import saveChar from './saveChar'
 
-let contador = 1
 
 function showChars(data) {
 
     let tableBody = $('#tableBody')
-
+    
     for (let index = 0; index < data.length; index++) {
         const element = data[index];
-
-        // Translate gender and color eyes
+        
+        // Translate gender  - height - mass - color eyes
         translater(element)
+        
+        let id = element.url.slice(28, -1)
 
-        let char = $('<tr/>').attr('id', `char${contador}`)
-        let charId = $('<td>').text(`${contador}`)
+        let char = $('<tr/>').attr('id', `char${id}`)
+        let charId = $('<td>').text(`${id}`)
         let charName = $('<td>').text(`${element.name}`)
         let charGender = $('<td>').text(`${element.gender}`)
-        let charHeight = $('<td>').text(`${element.height} cm`)
-        let charMass = $('<td>').text(`${element.mass} kg`)
+        let charHeight = $('<td>').text(`${element.height}`)
+        let charMass = $('<td>').text(`${element.mass}`)
         let charEyes = $('<td>').text(`${element.eye_color}`)
         let charSave = $('<td>').append($('<button>').text('Guardar').addClass('btn btn-danger saveChar').attr('type', 'button'))
 
-        contador++
+        
 
         char.append(charId)
             .append(charName)
@@ -33,9 +34,10 @@ function showChars(data) {
             .append(charSave)
         tableBody.append(char)
     }
-    
-    saveChar()
 
+    saveChar()
+    
 }
+
 
 export default showChars
