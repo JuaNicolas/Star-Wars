@@ -1,8 +1,9 @@
 import { setLocalList, getLocalList } from './localStorage/localStorage'
 
-let savedChars = getLocalList('chars')
 
 export default function saveChar() {
+    
+    let savedChars = getLocalList('chars')
 
     let btn = $('.saveChar')
 
@@ -28,13 +29,14 @@ export default function saveChar() {
         }
 
         savedChars.push(char)
+        setLocalList('chars', savedChars)
 
 
         charRow.fadeOut(1250, function () {
             charRow.remove()
         })
+        
     })
 
-    setLocalList('chars', savedChars)
 
 }

@@ -1,4 +1,4 @@
-import translater from './translater'
+import translater from './people/translater'
 import saveChar from './saveChar'
 
 
