@@ -1,4 +1,5 @@
 import { getLocalList } from "./localStorage"
+import deleteChar from './deleteChar'
 
 export default function showSavedChars() {
 
@@ -26,5 +27,6 @@ export default function showSavedChars() {
         tableBody.append(char)
 
     }
-
+    
+    deleteChar()
 }
