@@ -1,6 +1,7 @@
-import showChars from './showChars'
+import showChars from "./showChars";
+import showError from "./showError";
 
-function getData(url) {
+export default function getData(url) {
     $.ajax(url)
         .done(function (data) {
             showChars(data.results)
@@ -10,8 +11,4 @@ function getData(url) {
         })
 }
 
-function showError(_error) {
-    console.log("El error es: " + _error);
-}
 
-export default getData

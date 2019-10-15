@@ -1,9 +1,9 @@
 import getData from './getData'
 
 let url = 'https://swapi.co/api/people'
-function checkNextPage() {
-    console.log('entro aca')
 
+export default function searchIfNextPage() {
+   
     $.ajax(url)
         .done(function (data) {
             if (data.next) {
@@ -16,5 +16,3 @@ function checkNextPage() {
             showError(error)
         })
 }
-
-export default checkNextPage

@@ -1,6 +1,5 @@
-import getData from '../utils/getData'
-import nextPage from '../utils/nextPage'
-import saveChar from '../utils/saveChar'
+import getData from '../utils/people/getData'
+import nextPage from '../utils/people/nextPage'
 
 // SWAPI URL "https://swapi.co/api/people/"
 

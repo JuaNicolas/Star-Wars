@@ -1,5 +1,4 @@
-import { setLocalList, getLocalList } from './localStorage/localStorage'
-
+import { setLocalList, getLocalList } from '../localStorage/localStorage'
 
 export default function saveChar() {
     

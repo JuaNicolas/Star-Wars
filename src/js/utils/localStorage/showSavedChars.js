@@ -1,15 +1,12 @@
-import { getLocalList } from "./localStorage/localStorage"
+import { getLocalList } from "./localStorage"
 
 export default function showSavedChars() {
 
     let savedCharList = getLocalList('chars')
-
+    
     let tableBody = $('#tableBody')
 
-    savedCharList.forEach(charSaved => {
-
-        console.log(charSaved.charName)
-
+    for (const charSaved of savedCharList) {
         let char = $('<tr/>').attr('id', `char${charSaved.charId}`)
         let charId = $('<td>').text(`${charSaved.charId}`)
         let charName = $('<td>').text(`${charSaved.charName}`)
@@ -27,7 +24,7 @@ export default function showSavedChars() {
             .append(charEyes)
             .append(charDelete)
         tableBody.append(char)
-    })
 
+    }
 
 }

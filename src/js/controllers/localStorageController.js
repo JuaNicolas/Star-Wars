@@ -1,8 +1,7 @@
-import showSavedChars from "../utils/showSavedChars"
+import showSavedChars from "../utils/localStorage/showSavedChars"
 
-function localStorageController() {
+
+export default function localStorageController() {
     console.log('entro al LS')
     showSavedChars()
 }
-
-export default localStorageController
