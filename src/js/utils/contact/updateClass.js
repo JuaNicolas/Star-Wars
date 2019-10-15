@@ -1,16 +1,15 @@
-import enableButton from '../utils/enableButton'
+import enableButton from "./enableButton"
 
-let updateClase = (node, condition) => {
+export default function updateClase(node, condition) {
 
     if (condition) {
         node.addClass('is-valid')
         node.removeClass('is-invalid')
-        enableButton()
     } else {
         node.addClass('is-invalid')
         node.removeClass('is-valid')
     }
-    enableButton()
-}
 
-export default updateClase
+    enableButton()
+
+}

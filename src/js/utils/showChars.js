@@ -4,15 +4,16 @@ import saveChar from './saveChar'
 
 function showChars(data) {
 
+
     let tableBody = $('#tableBody')
-    
+
     for (let index = 0; index < data.length; index++) {
         const element = data[index];
-        
+
         // Translate gender  - height - mass - color eyes
         translater(element)
-        
-        let id = element.url.slice(28, -1)
+
+        let id = parseInt(element.url.slice(28, -1))
 
         let char = $('<tr/>').attr('id', `char${id}`)
         let charId = $('<td>').text(`${id}`)
@@ -23,8 +24,6 @@ function showChars(data) {
         let charEyes = $('<td>').text(`${element.eye_color}`)
         let charSave = $('<td>').append($('<button>').text('Guardar').addClass('btn btn-danger saveChar').attr('type', 'button'))
 
-        
-
         char.append(charId)
             .append(charName)
             .append(charGender)
@@ -33,10 +32,11 @@ function showChars(data) {
             .append(charEyes)
             .append(charSave)
         tableBody.append(char)
+
     }
 
     saveChar()
-    
+
 }
 
 

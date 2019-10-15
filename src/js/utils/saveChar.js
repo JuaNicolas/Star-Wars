@@ -1,6 +1,6 @@
-import { setLocalList } from './localStorage'
+import { setLocalList, getLocalList } from './localStorage/localStorage'
 
-let savedChars = []
+let savedChars = getLocalList('chars')
 
 export default function saveChar() {
 
@@ -19,22 +19,22 @@ export default function saveChar() {
 
 
         let char = {
-            charId, 
-            charName, 
-            charGender, 
-            charHeight, 
-            charMass, 
+            charId,
+            charName,
+            charGender,
+            charHeight,
+            charMass,
             charColorEyes
         }
 
         savedChars.push(char)
-        console.log(savedChars)
 
-        setLocalList('chars', savedChars)
 
         charRow.fadeOut(1250, function () {
             charRow.remove()
         })
     })
+
+    setLocalList('chars', savedChars)
 
 }

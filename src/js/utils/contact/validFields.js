@@ -1,8 +1,8 @@
 import updateClase from './updateClass'
-import {nameFeedback, emailFeedback} from './feedback'
+import { nameFeedback, emailFeedback } from './feedback'
 
 // Validar Nombre
-let validName = (_e) => {
+export function validName(_e) {
 
     let validation = typeof _e.val() === 'string'
         && _e.val().length > 1
@@ -12,7 +12,7 @@ let validName = (_e) => {
 }
 
 // Validar Email
-let validEmail = (_e) => {
+export function validEmail(_e) {
 
     let validation = _e.val().indexOf('@') > -1
         && _e.val().indexOf('.com') > -1
@@ -22,7 +22,7 @@ let validEmail = (_e) => {
 }
 
 // Validar Comentario
-let validComment = (_e) => {
+export function validComment(_e) {
 
     let validation = _e.val() != null
         && _e.val().length > 0
@@ -30,5 +30,3 @@ let validComment = (_e) => {
 
     updateClase(_e, validation)
 }
-
-export {validName, validEmail, validComment}
