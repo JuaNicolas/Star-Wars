@@ -1,11 +1,17 @@
-import searchIfNextPage from './checkNextPage'
+import getData from "./getData"
+import showChars from "./showChars"
+import showError from "./showError"
 
-export default function nextPage() {
-    
-    let seeMoreBtn = $('#seeMore')
+export default function nextPage(data) {
+    console.log(data)
 
-    seeMoreBtn.click( function () {
-        searchIfNextPage()
-    })
+    let nextBtn = $('#seeMore')
 
+    if (!data.next) {
+        nextBtn.attr("disabled", true)
+    } else {
+        nextBtn.off().click(function () {
+            getData(data.next, showChars, showError)
+        })
+    }
 }

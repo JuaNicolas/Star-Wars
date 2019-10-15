@@ -1,13 +1,13 @@
 import getData from '../utils/people/getData'
-import nextPage from '../utils/people/nextPage'
+import showChars from '../utils/people/showChars'
+import showError from '../utils/people/showError'
 
 // SWAPI URL "https://swapi.co/api/people/"
 
-function peopleController() {
+export default function peopleController() {
     
-    getData('https://swapi.co/api/people/')
-    nextPage()
+
+    getData('https://swapi.co/api/people/', showChars, showError)
     
 }
 
-export default peopleController

@@ -1,14 +1,16 @@
-import showChars from "./showChars";
-import showError from "./showError";
+export default function getData(_url, _showChars, _showError) {
 
-export default function getData(url) {
-    $.ajax(url)
-        .done(function (data) {
-            showChars(data.results)
-        })
-        .fail(function (error) {
-            showError(error)
-        })
+    var result = $.ajax({
+        url: _url,
+        method: "GET"
+    })
+
+    result.done(function (data) {
+        _showChars(data)
+    });
+
+    result.fail(function (error) {
+        _showError(error)
+    })
 }
-
 

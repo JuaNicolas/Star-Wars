@@ -1,7 +1,7 @@
 import { setLocalList, getLocalList } from '../localStorage/localStorage'
 
-export default function saveChar() {
-    
+export default function saveChar () {
+
     let savedChars = getLocalList('chars')
 
     let btn = $('.saveChar')
@@ -17,7 +17,6 @@ export default function saveChar() {
         let charMass = $(this).parent().prev().prev().text()
         let charColorEyes = $(this).parent().prev().text()
 
-
         let char = {
             charId,
             charName,
@@ -30,12 +29,9 @@ export default function saveChar() {
         savedChars.push(char)
         setLocalList('chars', savedChars)
 
-
         charRow.fadeOut(1250, function () {
             charRow.remove()
         })
-        
+
     })
-
-
 }
