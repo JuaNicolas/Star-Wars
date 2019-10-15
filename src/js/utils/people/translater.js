@@ -9,10 +9,8 @@ export default function translater(char) {
         case 'female':
             char.gender = 'Mujer'
             break;
-        case 'n/a':
-            char.gender = 'Sin género'
-            break;
         default:
+            char.gender = 'Sin género'
             break;
     }
 
@@ -64,9 +62,6 @@ export default function translater(char) {
         case 'pink':
             char.eye_color = 'Rosa'
             break;
-        case 'unknown':
-            char.eye_color = 'Desconocido'
-            break;
         case 'red, blue':
             char.eye_color = 'Rojo azulado'
             break;
@@ -83,6 +78,7 @@ export default function translater(char) {
             char.eye_color = 'Negro oscuro'
             break;
         default:
+            char.eye_color = 'Desconocido'
             break;
     }
 }
