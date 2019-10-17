@@ -6,7 +6,7 @@ export default function saveChar() {
     let charList = getLocalList('chars')
 
     // When the user click on the button
-    $('.saveChar').off().on('click', function () {
+    $('.saveChar').off().one('click', function () {
     
         // Selects all the td.button siblings and loop through them
         let row = $(this).parent().siblings()

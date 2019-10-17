@@ -6,7 +6,7 @@ export default function deleteChar() {
     let savedChars = getLocalList('chars')
 
 
-    deleteButton.on('click', function () {
+    deleteButton.one('click', function () {
 
         let row = $(this).parent().siblings()
         let charRow = $(this).parent().parent()

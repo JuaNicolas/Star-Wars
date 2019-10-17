@@ -2,6 +2,8 @@ import translater from './translater'
 import saveChar from './saveChar'
 import nextPage from './nextPage';
 import searchCharacter from '../localStorage/searchChar';
+import getData from './getData';
+import showError from './showError';
 
 
 export default function showCharacters(_data) {
@@ -52,7 +54,12 @@ export default function showCharacters(_data) {
                 // Append the Character row node to the table body.
                 tableBody.append(character)
             }
+        }
 
+        // Call getData if all the character results are already in the Local Storage
+        console.log(tableBody.children().length)
+        if (tableBody.children().length === 0) {
+            getData(_data.next, showCharacters, showError)
         }
     }
 
