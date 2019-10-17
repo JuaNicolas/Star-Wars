@@ -1,5 +1,5 @@
 import getData from "./getData"
-import showChars from "./showChars"
+import showChars from "./showCharacters"
 import showError from "./showError"
 
 export default function nextPage(data) {

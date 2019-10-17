@@ -8,7 +8,6 @@ export default function searchCharacter(_characterToSearch) {
 
     for (const element of savedChars) {
         if (element.charId == _characterToSearch) {
-            console.log('lo encontro')
             return true
         } 
     }
