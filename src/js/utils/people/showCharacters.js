@@ -57,8 +57,9 @@ export default function showCharacters(_data) {
         }
 
         // Call getData if all the character results are already in the Local Storage
-        console.log(tableBody.children().length)
-        if (tableBody.children().length === 0) {
+        // console.log(tableBody.children().length)
+        let keepCallingAPI = tableBody.children().length === 0
+        if (keepCallingAPI) {
             getData(_data.next, showCharacters, showError)
         }
     }
