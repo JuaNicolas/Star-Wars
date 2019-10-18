@@ -1,5 +1,7 @@
 import { getLocalList, setLocalList } from "./localStorage"
 
+// En esta función "deleteChar" tenés un switch con un sólo "case" que es '0', esto es, por lo pronto, innecesario. Si tenés un switch de una sola condición, hace un "if" y listo.
+
 export default function deleteChar() {
 
     let deleteButton = $('.deleteChar')
@@ -10,32 +12,29 @@ export default function deleteChar() {
 
         let row = $(this).parent().siblings()
         let charRow = $(this).parent().parent()
-        // let charId = parseInt($(this).parent().prev().prev().prev().prev().prev().prev().text())
 
         for (let index = 0; index < row.length; index++) {
             const element = row[index].innerText;
-            switch (index) {
-                case 0:
 
-                    let id = element
+            // For the ID loops
+            if (index == 0) {
 
-                    savedChars.forEach((element, index) => {
+                // Takes innerHTML text as ID
+                let id = element
 
-                        if (element.charId == id) {
+                // Loops through the characters saved and deletes the once with same ID as the click
+                savedChars.forEach((element, index) => {
 
-                            savedChars.splice(index, 1)
+                    if (element.charId == id) {
 
-                            setLocalList('chars', savedChars)
-
-                            charRow.fadeOut(250, function () {
-                                charRow.remove()
-                            })
-                        }
-                    })
-                    break;
-
-                default:
-                    break;
+                        savedChars.splice(index, 1)
+                        setLocalList('chars', savedChars)
+                        
+                        charRow.fadeOut(250, function () {
+                            charRow.remove()
+                        })
+                    }
+                })
             }
         }
         // Delete LS once its empty
@@ -46,33 +45,3 @@ export default function deleteChar() {
         }
     })
 }
-
-// deleteButton.on('click', function () {
-
-//     let charRow = $(this).parent().parent()
-
-//     let charId = parseInt($(this).parent().prev().prev().prev().prev().prev().prev().text())
-
-
-//     savedChars.forEach((element, index) => {
-
-//         if (element.charId == charId) {
-
-//             savedChars.splice(index, 1)
-//             // console.log(savedChars[index])
-
-//             setLocalList('chars', savedChars)
-
-//             charRow.fadeOut(250, function () {
-//                 charRow.remove()
-//             })
-//         }
-//     })
-
-//     // Delete LS once its empty
-//     let emptyArray = savedChars.length === 0
-
-//     if (emptyArray) {
-//         window.localStorage.clear()
-//     }
-// })
