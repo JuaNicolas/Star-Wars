@@ -4,7 +4,14 @@ import deleteChar from './deleteChar'
 export default function showSavedChars() {
 
     let savedCharList = getLocalList('chars')
-    
+
+
+    // Sort the objects inside the array saved in the LS despite the original order inside
+    savedCharList.sort(function (a, b) {
+        return a.charId - b.charId;
+    });
+
+
     let tableBody = $('#tableBody')
 
     for (const charSaved of savedCharList) {
@@ -27,6 +34,6 @@ export default function showSavedChars() {
         tableBody.append(char)
 
     }
-    
+
     deleteChar()
 }

@@ -6,7 +6,9 @@ import getData from './getData';
 import showError from './showError';
 
 
+
 export default function showCharacters(_data) {
+
 
     let tableBody = $('#tableBody')
     let charList = _data.results
@@ -16,7 +18,7 @@ export default function showCharacters(_data) {
         // For each character from the data.results list, select the inner data and put it in html
         for (let index = 0; index < charList.length; index++) {
 
-            const char = charList[index];
+            const char = charList[index]
 
             // Translate gender  - height - mass - color eyes
             translater(char)
