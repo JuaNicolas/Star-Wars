@@ -24,19 +24,19 @@ export default function showCharacters(_data) {
             translater(char)
 
             // Grab ID from the specific unique URL
-            let id = parseInt(char.url.slice(28, -1))
+            // let id = parseInt(char.url.slice(28, -1))
 
             // Search the character in the LocalStorage
-            let searchChar = searchCharacter(id)
+            let searchChar = searchCharacter(char.id)
 
             // IF the character is not in the LocalStorage, then display it.
             if (!searchChar) {
 
                 // Character root table row
-                let character = $('<tr/>').attr('id', `char${id}`)
+                let character = $('<tr/>').attr('id', `char${char.id}`)
 
                 // Character information: id - name - gender - height - mass - eye color and a save button
-                let charId = $('<td scope="col">').text(`${id}`)
+                let charId = $('<td scope="col">').text(`${char.id}`)
                 let charName = $('<td scope="col">').text(`${char.name}`)
                 let charGender = $('<td scope="col">').text(`${char.gender}`)
                 let charHeight = $('<td scope="col">').text(`${char.height}`)

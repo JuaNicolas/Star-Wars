@@ -1,84 +1,137 @@
-export default function translater(char) {
+export default function translater(_char) {
 
-    // Translate gender  - height - mass - color eyes
+    // Translate id/url - gender  - height - mass - color eyes
 
-    switch (char.gender) {
+
+    let id = parseInt(_char.url.slice(28, -1))
+
+    // 35 <> 47 <> 74 // 47  // 75 <> 35
+
+    switch (true) {
+        case (id == 35):
+            id = 88
+            _char.id = id
+            break;
+        case (id == 47):
+            id = 73
+            _char.id = id
+            break;
+        case (id >= 75):
+            id -= 1
+            _char.id = id
+            break;
+        case (id >= 48):
+            id -= 2
+            _char.id = id
+            break;
+        case (id >= 35):
+            id -= 1
+            _char.id = id
+            break;
+        default:
+            _char.id = id
+            break;
+    }
+
+    // if (id >= 75) {
+    //     console.log(`restare 1 ${id}`)
+    //     id -= 1
+    //     _char.id = id
+    //     console.log(`reste 1 ${id}`)
+    // }
+    // else if (id >= 48) {
+    //     console.log(`restare 1 ${id}`)
+    //     id -= 2
+    //     _char.id = id
+    //     console.log(`reste 1 ${id}`)
+    // }
+    // else if (id >= 35) {
+    //     console.log(`restare 1 ${id}`)
+    //     id -= 1
+    //     _char.id = id
+    //     console.log(`reste 1 ${id}`)
+    // }
+    // else {
+    //     _char.id = id
+    // }
+
+    switch (_char.gender) {
         case 'male':
-            char.gender = 'Hombre'
+            _char.gender = 'Hombre'
             break;
         case 'female':
-            char.gender = 'Mujer'
+            _char.gender = 'Mujer'
             break;
         default:
-            char.gender = 'Sin género'
+            _char.gender = 'Sin género'
             break;
     }
 
-    switch (char.height) {
+    switch (_char.height) {
         case 'unknown':
-            char.height = 'Desconocido'
+            _char.height = 'Desconocido'
             break;
 
         default:
-            char.height = `${char.height} cm`
+            _char.height = `${_char.height} cm`
             break;
     }
 
-    switch (char.mass) {
+    switch (_char.mass) {
         case 'unknown':
-            char.mass = 'Desconocido'
+            _char.mass = 'Desconocido'
             break;
 
         default:
-            char.mass = `${char.mass} Kg.`
+            _char.mass = `${_char.mass} Kg.`
             break;
     }
 
-    switch (char.eye_color) {
+    switch (_char.eye_color) {
         case 'blue':
-            char.eye_color = 'Azul'
+            _char.eye_color = 'Azul'
             break;
         case 'yellow':
-            char.eye_color = 'Amarillo'
+            _char.eye_color = 'Amarillo'
             break;
         case 'red':
-            char.eye_color = 'Rojo'
+            _char.eye_color = 'Rojo'
             break;
         case 'brown':
-            char.eye_color = 'Marrón'
+            _char.eye_color = 'Marrón'
             break;
         case 'blue-gray':
-            char.eye_color = 'Azul-grisacéo'
+            _char.eye_color = 'Azul-grisacéo'
             break;
         case 'black':
-            char.eye_color = 'Negro'
+            _char.eye_color = 'Negro'
             break;
         case 'orange':
-            char.eye_color = 'Naranja'
+            _char.eye_color = 'Naranja'
             break;
         case 'hazel':
-            char.eye_color = 'Marrón avellana'
+            _char.eye_color = 'Marrón avellana'
             break;
         case 'pink':
-            char.eye_color = 'Rosa'
+            _char.eye_color = 'Rosa'
             break;
         case 'red, blue':
-            char.eye_color = 'Rojo azulado'
+            _char.eye_color = 'Rojo azulado'
             break;
         case 'gold':
-            char.eye_color = 'Dorado'
+            _char.eye_color = 'Dorado'
             break;
         case 'green, yellow':
-            char.eye_color = 'Verde amarillento'
+            _char.eye_color = 'Verde amarillento'
             break;
         case 'white':
-            char.eye_color = 'Blanco'
+            _char.eye_color = 'Blanco'
             break;
         case 'dark':
-            char.eye_color = 'Negro oscuro'
+            _char.eye_color = 'Negro oscuro'
             break;
         default:
-            char.eye_color = 'Desconocido'
+            _char.eye_color = 'Desconocido'
             break;
     }
 }
