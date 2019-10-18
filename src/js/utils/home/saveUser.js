@@ -1,5 +1,5 @@
 import { getLocalList, setLocalList } from "../localStorage/localStorage"
-import userNode from "./userNode"
+import userNodeDOM from "./userNodeDOM"
 
 export default function saveUser() {
 
@@ -17,7 +17,7 @@ export default function saveUser() {
         // Hide the modal
         $('.modal').modal('toggle')
 
-        userNode(userObjName)
+        userNodeDOM(userObjName)
         // let userNode = $('<p id="user" class="h1 font-weight-bolder">').text(`Bienvenido! ${user[0].userName}`)
         // let userDelete = $('<button class="btn btn-danger deleteUser">').text('eliminar usuario')
         // $('.userCol').append(userNode).append(userDelete)

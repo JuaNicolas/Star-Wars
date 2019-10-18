@@ -1,5 +1,35 @@
 <div class="container text-center">
+
+    <!-- New User -->
+    <div class="modal text-dark" tabindex="-1" role="dialog">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Nuevo usuario!</h5>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="row my-2">
+                            <div class="col">
+                                <input type="text" id="newUser" class="form-control" placeholder="Nombre">
+                                <p id="newUserFeedback" class="my-1"></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary close" data-dismiss="modal" aria-label="Close">cerrar</button>
+                    <button type="button" id="buttonSend" class="btn btn-primary" disabled>guardar!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User -->
     <div class="row">
+        <div class="col userCol"></div>
+    </div>
+    <div class="row mt-5">
         <div class="col">
             <h1>
                 Star
@@ -8,9 +38,13 @@
             </h1>
         </div>
     </div>
+
+
+
     <div class="row">
         <div class="col">
-            <p>Hecha por <a href="https://www.linkedin.com/in/nicolas-agustin-juanico/" target="_blank">Nicolas Juanico</a></p>
+            <p>Hecha por <a href="https://www.linkedin.com/in/nicolas-agustin-juanico/" target="_blank">Nicolas
+                    Juanico</a></p>
         </div>
     </div>
 </div>
