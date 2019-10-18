@@ -9,22 +9,26 @@ export default function translater(_char) {
 
     switch (true) {
         case (id == 35):
-            id = 88
+            id = 87
             _char.id = id
             break;
         case (id == 47):
-            id = 73
+            id = 72
             _char.id = id
             break;
         case (id >= 75):
-            id -= 1
-            _char.id = id
-            break;
-        case (id >= 48):
             id -= 2
             _char.id = id
             break;
+        case (id >= 48):
+            id -= 3
+            _char.id = id
+            break;
         case (id >= 35):
+            id -= 2
+            _char.id = id
+            break;
+        case (id >= 18):
             id -= 1
             _char.id = id
             break;
@@ -32,28 +36,6 @@ export default function translater(_char) {
             _char.id = id
             break;
     }
-
-    // if (id >= 75) {
-    //     console.log(`restare 1 ${id}`)
-    //     id -= 1
-    //     _char.id = id
-    //     console.log(`reste 1 ${id}`)
-    // }
-    // else if (id >= 48) {
-    //     console.log(`restare 1 ${id}`)
-    //     id -= 2
-    //     _char.id = id
-    //     console.log(`reste 1 ${id}`)
-    // }
-    // else if (id >= 35) {
-    //     console.log(`restare 1 ${id}`)
-    //     id -= 1
-    //     _char.id = id
-    //     console.log(`reste 1 ${id}`)
-    // }
-    // else {
-    //     _char.id = id
-    // }
 
     switch (_char.gender) {
         case 'male':
