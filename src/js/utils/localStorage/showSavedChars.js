@@ -1,5 +1,5 @@
 import { getLocalList } from "./localStorage"
-import deleteChar from './deleteChar'
+import deleteCharButton from './deleteChar'
 
 export default function showSavedChars() {
 
@@ -35,5 +35,5 @@ export default function showSavedChars() {
 
     }
 
-    deleteChar()
+    deleteCharButton()
 }
