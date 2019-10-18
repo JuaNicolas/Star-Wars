@@ -15,7 +15,9 @@ export default function homeController() {
 
     let userNode = $('<p id="user" class="h1 font-weight-bolder">').text(`Bienvenido! ${user[0].userName}`)
 
-    let parentNode = $('.userCol').append(userNode)
+    let userDelete = $('<button class="btn btn-danger">').text('eliminar usuario')
+    
+    $('.userCol').append(userNode).append(userDelete)
 
   } else {
 
