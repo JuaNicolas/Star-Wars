@@ -5,11 +5,7 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import router from './router'
 
-// Functions created
-// import { setLocalList } from './utils/localStorage'
-
 // Initialization
-
 
 $(document).ready(function () {
   

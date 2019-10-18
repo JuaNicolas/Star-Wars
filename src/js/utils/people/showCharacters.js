@@ -1,7 +1,7 @@
 import translater from './translater'
 import saveChar from './saveChar'
 import nextPage from './nextPage';
-import searchCharacter from '../localStorage/searchChar';
+import searchCharacter from '../charsInLS/searchChar';
 import getData from './getData';
 import showError from './showError';
 

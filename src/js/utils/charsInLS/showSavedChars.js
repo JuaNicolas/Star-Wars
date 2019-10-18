@@ -1,4 +1,4 @@
-import { getLocalList } from "./localStorage"
+import { getLocalList } from "../localStorage/localStorage"
 import deleteCharButton from './deleteChar'
 
 export default function showSavedChars() {

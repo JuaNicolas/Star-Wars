@@ -5,8 +5,6 @@ export default function translater(_char) {
 
     let id = parseInt(_char.url.slice(28, -1))
 
-    // 35 <> 47 <> 74 // 47  // 75 <> 35
-
     switch (true) {
         case (id == 35):
             id = 87

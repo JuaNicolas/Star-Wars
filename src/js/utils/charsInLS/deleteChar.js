@@ -1,6 +1,4 @@
-import { getLocalList, setLocalList } from "./localStorage"
-
-// En esta función "deleteChar" tenés un switch con un sólo "case" que es '0', esto es, por lo pronto, innecesario. Si tenés un switch de una sola condición, hace un "if" y listo.
+import { getLocalList, setLocalList } from "../localStorage/localStorage"
 
 export default function deleteChar() {
 
@@ -29,7 +27,7 @@ export default function deleteChar() {
 
                         savedChars.splice(index, 1)
                         setLocalList('chars', savedChars)
-                        
+
                         charRow.fadeOut(250, function () {
                             charRow.remove()
                         })
