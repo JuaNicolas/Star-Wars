@@ -16,7 +16,7 @@ export default function saveUser() {
 
 
         let userNode = $('<p id="user" class="h1 font-weight-bolder">').text(`Bienvenido! ${user[0].userName}`)
-        let userDelete = $('<button class="btn btn-danger">').text('eliminar usuario')
+        let userDelete = $('<button class="btn btn-danger deleteUser">').text('eliminar usuario')
 
         $('.userCol').append(userNode).append(userDelete)
     })
