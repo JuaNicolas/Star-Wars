@@ -10,8 +10,9 @@ export default function enableButton() {
     let name = $('#inputName').hasClass('is-valid')
     let email = $('#inputEmail').hasClass('is-valid')
     let comment = $('#inputComment').hasClass('is-valid')
+    let newUser = $('#newUser').hasClass('is-valid')
 
-    let enableIt = name && email && comment
+    let enableIt = name && email && comment || newUser
 
     // Execute
     if (enableIt) {
