@@ -41,6 +41,14 @@ export default function homeController() {
   } else {
 
     $('.modal').modal('show')
+    $('.modal').modal('show')
+    $('#newUser').blur(function () {
+      validName($(this))
+    }).keyup(function () {
+      validName($(this))
+    })
+
+    saveUser()
 
     $('.close').off().one('click', function () {
       let userNode = $('<p id="user" class="h1 font-weight-bolder">').text(`Bienvenido, usted no se ha registrado!`)
@@ -48,7 +56,7 @@ export default function homeController() {
       $('.userCol').append(userNode).append(userAdd)
 
       $('.openModal').off().click(function () {
-       
+
         $('.modal').modal('show')
         $('#newUser').blur(function () {
           validName($(this))
