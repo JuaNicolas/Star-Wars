@@ -1,4 +1,4 @@
-import getData from '../utils/people/getData'
+import getData from '../utils/Calls_API/getData'
 import showCharacters from '../utils/people/showCharacters'
 import showError from '../utils/people/showError'
 

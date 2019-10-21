@@ -1,8 +1,8 @@
 import translater from './translater'
 import saveChar from './saveChar'
-import nextPage from './nextPage';
+import nextPage from '../Calls_API/nextPage';
 import searchCharacter from '../charsInLS/searchChar';
-import getData from './getData';
+import getData from '../Calls_API/getData';
 import showError from './showError';
 
 

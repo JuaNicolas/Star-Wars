@@ -1,6 +1,6 @@
 import getData from "./getData"
-import showChars from "./showCharacters"
-import showError from "./showError"
+import showChars from "../people/showCharacters"
+import showError from "../people/showError"
 
 export default function nextPage(data) {
     
