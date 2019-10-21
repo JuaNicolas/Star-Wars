@@ -11,30 +11,22 @@ export default function deleteChar() {
         let row = $(this).parent().siblings()
         let charRow = $(this).parent().parent()
 
-        for (let index = 0; index < row.length; index++) {
-            const element = row[index].innerText;
+        const charId = row[0].innerText
 
-            // For the ID loops
-            if (index == 0) {
+        // Loops through the characters saved and deletes the once with same ID as the click
+        savedChars.forEach((element, index) => {
 
-                // Takes innerHTML text as ID
-                let id = element
+            if (element.charId == charId) {
 
-                // Loops through the characters saved and deletes the once with same ID as the click
-                savedChars.forEach((element, index) => {
+                savedChars.splice(index, 1)
+                setLocalList('chars', savedChars)
 
-                    if (element.charId == id) {
-
-                        savedChars.splice(index, 1)
-                        setLocalList('chars', savedChars)
-
-                        charRow.fadeOut(250, function () {
-                            charRow.remove()
-                        })
-                    }
+                charRow.fadeOut(250, function () {
+                    charRow.remove()
                 })
             }
-        }
+        })
+
         // Delete LS once its empty
         let emptyArray = savedChars.length === 0
 

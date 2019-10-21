@@ -7,7 +7,6 @@ export default function homeController() {
 
 
   // Abrir modal o cerrar si hay usuario.
-
   let userExist = getLocalList('user').length !== 0
   let userCharList = getLocalList('chars').length !== 0
 
@@ -24,7 +23,6 @@ export default function homeController() {
     let userNode = $('<p id="user" class="h1 font-weight-bolder">').text(`Bienvenido, usted no se ha registrado!`)
     let userNodeSuggest = $('<p class="font-weight-bolder suggest">').text('Para una mejor experiencia cree un usuario.')
     let userAdd = $('<button class="btn btn-success openModal">').text('Agregar usuario')
-    // $('.userCol').append(userNode).append(userNodeSuggest).append(userAdd)
     $('.userCol').append(userNode, userNodeSuggest, userAdd)
 
     $('.openModal').off().click(function () {
