@@ -13,16 +13,16 @@
     "bootstrap": "^4.3.1",
     "crossroads": "^0.12.2",
     "jquery": "^3.4.1",
-    "popper.js": "^1.15.0"
+    "popper.js": "^1.16.0"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^5.0.3",
+    "copy-webpack-plugin": "^5.0.4",
     "css-loader": "^3.2.0",
-    "file-loader": "^3.0.1",
+    "file-loader": "^4.2.0",
     "html-loader": "^0.5.5",
-    "style-loader": "^0.23.1",
     "webpack": "^4.41.2",
+    "style-loader": "^1.0.0",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.5.1"
+    "webpack-dev-server": "^3.9.0"
   }
 }
